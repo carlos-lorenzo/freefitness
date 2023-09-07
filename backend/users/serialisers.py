@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 UserModel = get_user_model()
 
-class UserRegisterSerializer(serializers.ModelSerializer):
+class UserRegisterSerialiser(serializers.ModelSerializer):
 	class Meta:
 		model = UserModel
 		fields = '__all__'
@@ -14,7 +14,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 		user_obj.save()
 		return user_obj
 
-class UserLoginSerializer(serializers.Serializer):
+class UserLoginSerialiser(serializers.Serializer):
 	email = serializers.EmailField()
 	password = serializers.CharField()
 	##
@@ -24,7 +24,7 @@ class UserLoginSerializer(serializers.Serializer):
 			raise ValidationError('user not found')
 		return user
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerialiser(serializers.ModelSerializer):
 	class Meta:
 		model = UserModel
 		fields = ('email', 'username')
