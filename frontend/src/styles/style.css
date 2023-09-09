@@ -1,0 +1,114 @@
+:root {
+    --text: #161515;
+    --background: #ffffff;
+    --primary: #2bd4d4;
+    --secondary: #ecb1b1;
+    --accent: #b12f2f;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: Monolisa;
+}
+
+a {
+    color: var(--accent);
+}
+
+input[type="text"], input[type="password"], input[type="number"] {
+    font-family: Monolisa;
+    color: var(--text);
+    outline: none;
+    height: 5vh;
+    width: 35vw;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+option {
+    font-family: Monolisa;
+    color: var(--text);
+    outline: none;
+    height: 5vh;
+    width: 35vw;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button{
+    color: var(--background);
+    background-color: var(--text);
+    font-family: Monolisa;
+    outline: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.navbar {
+    display: grid;
+    place-items: center;
+    background-color: var(--text);
+    
+    
+    width: 100vw;
+    height: 10vh; 
+}
+
+#navbar-items {
+    display: flex;
+    height: 10vh;
+    width: 80vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.full-width {
+    width: 100vw;
+}
+
+.full-height {
+    height: 80vh;
+}
+
+.centred {
+    display: grid;
+    place-items: center;
+}
+
+.border {
+    border-style: solid;
+    border-radius: 5px;
+    border-color: var(--text);
+}
+
+#must-login {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    height: 90vh;
+}
+
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+#profile-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+
+
+#meal-form {
+    display: flex;
+    flex-direction: column;
+}
+

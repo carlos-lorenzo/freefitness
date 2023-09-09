@@ -8,7 +8,7 @@ from rest_framework import permissions, status
 from users.validations import custom_validation, validate_email, validate_password
 
 from tracker.models import Tracker, Meal, Consumable, MealItem
-from tracker.serializers import MealSerialiser, ConsumableSerialiser
+from tracker.serializers import MealSerialiser, ConsumableSerialiser, TrackerSerialiser
 
 # Create your views here.
 def index(request):
@@ -80,7 +80,7 @@ class CreateMeal(APIView):
 			
 			meal_item = MealItem.objects.create(consumable=consumable,
 												meal=new_meal,
-                                       			amount=amount)
+									   			amount=amount)
 			meal_item.save()
 
 		
@@ -105,6 +105,30 @@ class GetConsumables(APIView):
 	def get(self, request):
 		consumbales = Consumable.objects.all()
 		serialiser = ConsumableSerialiser(consumbales, many=True)
+		
+		return Response(serialiser.data, status=status.HTTP_200_OK)
+		
+
+class Track(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
+	
+	def get(self, request):
+		user = request.user
+		tracker = Tracker.objects.all().get(user=user)
+		tracker.reset_macros()
+		
+		meals = Meal.objects.filter(user=user)
+		for meal in meals:
+			meal_items = MealItem.objects.all().filter(meal=meal)
+			for meal_item in meal_items:
+				tracker.add_to_macros(meal_item.macros)
+
+		tracker.round_macros()
+		
+		serialiser = TrackerSerialiser(tracker, many=False)
+				
+		
 		
 		return Response(serialiser.data, status=status.HTTP_200_OK)
 		

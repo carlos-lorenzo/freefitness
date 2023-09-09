@@ -6,8 +6,9 @@ function Navbar({ loggedIn, client}) {
     return (
         <>
             <div className="navbar">
+                <div id="navbar-items">
                 <Link to="/" className="nav-link">
-                    <FontAwesomeIcon icon={faHouse} />
+                    <FontAwesomeIcon icon={faHouse} style={{color: "white"}}/>
                 </Link>
                 <Link to ={{
                     pathname: "profile/",
@@ -16,8 +17,9 @@ function Navbar({ loggedIn, client}) {
                         client: client
                     }
                 }}>
-                    <FontAwesomeIcon icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} style={{color: "white"}} size="xll"/>
                 </Link>   
+                </div>
             </div>  
         </>
     )

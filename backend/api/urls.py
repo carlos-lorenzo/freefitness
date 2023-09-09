@@ -11,4 +11,5 @@ urlpatterns = [
 	path('create_meal', views.CreateMeal.as_view(), name='createmeal'),
 	path('get_meals', views.GetUserMeals.as_view(), name='getmeals'),
 	path('get_consumables', views.GetConsumables.as_view(), name='getconsumables'),
+    path('track', views.Track.as_view(), name='track'),
 ]

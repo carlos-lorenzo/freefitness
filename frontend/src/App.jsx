@@ -9,6 +9,8 @@ import Profile from './Pages/Profile';
 import LogIn from './Pages/LogIn';
 import Register from './Pages/Register';
 
+import "./styles/style.css"
+
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;

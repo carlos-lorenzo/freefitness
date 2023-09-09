@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 export default function MealItem({ client, index }) {
 
     const [consumables, setConsumables] = useState([])
@@ -14,7 +14,7 @@ export default function MealItem({ client, index }) {
         })
     }
     return (
-		<>
+		<div className='meal-item'>
 			<select name={`name_${index}`} id="consumable">
 					{consumables.map(consumable => {
 						return (
@@ -22,9 +22,9 @@ export default function MealItem({ client, index }) {
 						)
 					})}
 			</select>
-			<input name={`amount_${index}`} type="number" placeholder="amount"/>
+			<input name={`amount_${index}`} type="number" placeholder="grams"/>
 
-		</>
+		</div>
         
     )
 }

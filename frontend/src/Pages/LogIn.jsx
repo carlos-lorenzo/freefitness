@@ -29,36 +29,44 @@ export default function LogIn({ setLoggedIn, client }) {
 
     return (
         <>
-            <form onSubmit={handleLogIn}>
+            <div className='centred full-width full-height' id='login-container'>
+                
+                <form onSubmit={handleLogIn} id='login-form'>
+                    <h2>Log In</h2> 
+                    <input 
+                    className='border'
+                    type="text" 
+                    id="email"
+                    placeholder="email"
+                    autoComplete="off"
+                    value={email}
+                    onChange={(e) => {setEmail(e.target.value)}}/>
 
-                <input 
-                type="text" 
-                id="email"
-                placeholder="email"
-                autoComplete="off"
-                value={email}
-                onChange={(e) => {setEmail(e.target.value)}}/>
+                    <input 
+                    className='border'
+                    type="text" 
+                    id="username"
+                    placeholder="username"
+                    autoComplete="off"
+                    value={username}
+                    onChange={(e) => {setUsername(e.target.value)}}/>
 
-                <input 
-                type="text" 
-                id="username"
-                placeholder="username"
-                autoComplete="off"
-                value={username}
-                onChange={(e) => {setUsername(e.target.value)}}/>
-
-                <input 
-                type="password" 
-                id="password"
-                placeholder="password"
-                autoComplete="none"
-                value={password}
-                onChange={(e) => {setPassword(e.target.value)}}/>
+                    <input 
+                    className='border'
+                    type="password" 
+                    id="password"
+                    placeholder="password"
+                    autoComplete="none"
+                    value={password}
+                    onChange={(e) => {setPassword(e.target.value)}}/>
 
 
-                <button ><h4>Log In</h4></button>
-            </form>
-            <p>Don't have an account? {<Link to="/register" >Register.</Link>}</p>
+                    <button className='border'><h4>Submit</h4></button>
+                    <p>Don't have an account? {<Link to="/register" >Register</Link>}</p> 
+                    </form>
+                      
+            </div>
+            
         </>
         
     )

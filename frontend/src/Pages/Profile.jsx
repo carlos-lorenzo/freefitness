@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom"
 
 import CreateMeal from './Components/CreateMeal';
+import Tracker from './Components/Tracker';
+
 
 export default function Profile({ loggedIn , setLoggedIn, client }) {
 	let navigate = useNavigate();
-
-	
 
 	function handleLogout(e) {
 		e.preventDefault();
@@ -23,17 +23,23 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 
 
 	if (!loggedIn) {
-		return (<p>You're not logged in, {<Link to="/login" >Log In.</Link>}</p>)
+		return (
+            <div id='must-login'>
+                <h2>You're not logged in, {<Link to="/login" >Log In</Link>}</h2>
+            </div>
+        
+        )
 	} else {
 		return (
 			<>
-				<h3>Welcome</h3>
+				<h1 className='centred'>Welcome</h1>
+                <div id='profile-page'>
+                    <Tracker client={client}/>
+                    <CreateMeal client={client}/>
 
-				<CreateMeal client={client}/>
-
-				<form onSubmit={handleLogout}>
-					<button ><h4>Log Out</h4></button>
-				</form>
+                    
+                </div>
+                
 			</>
 		)
 	}
