@@ -5,3 +5,4 @@ from . import models
 admin.site.register(models.Tracker)
 admin.site.register(models.Consumable)
 admin.site.register(models.Meal)
+admin.site.register(models.MealItem)

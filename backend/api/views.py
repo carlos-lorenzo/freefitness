@@ -7,12 +7,12 @@ from users.serialisers import UserRegisterSerialiser, UserLoginSerialiser, UserS
 from rest_framework import permissions, status
 from users.validations import custom_validation, validate_email, validate_password
 
-from tracker.models import Tracker, Meal, Consumable
-from tracker.serializers import MealSerialiser
+from tracker.models import Tracker, Meal, Consumable, MealItem
+from tracker.serializers import MealSerialiser, ConsumableSerialiser
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html", {})
+	return render(request, "index.html", {})
 
 class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
@@ -60,27 +60,51 @@ class UserView(APIView):
 		return Response({'user': serialiser.data}, status=status.HTTP_200_OK)
 
 class CreateMeal(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
 	
-    def post(self, request):
-        user = request.user
-        new_meal = Meal.objects.create(user=user)
-        new_meal.save()
-        
+	def post(self, request):
+		
+
+		user = request.user
+		new_meal = Meal.objects.create(user=user)
+		new_meal.save()
+  
+		meal_items = dict(request.POST.items())
+		print(meal_items)
+
+		for i in range(len(meal_items) // 2):
+			consumable_name = meal_items[f"name_{i}"]
+			amount = meal_items[f"amount_{i}"]
+			consumable = Consumable.objects.all().get(name=consumable_name)
+			
+			meal_item = MealItem.objects.create(consumable=consumable,
+												meal=new_meal,
+                                       			amount=amount)
+			meal_item.save()
+
+		
+  
+		return Response(status=status.HTTP_200_OK)
+	
 class GetUserMeals(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
-    authentication_classes = (SessionAuthentication,)
-    
-    def get(self, request):
-        user = request.user
-        user_meals = Meal.objects.filter(user=user)
-        serialiser = MealSerialiser(data=user_meals)
-        
-        return Response(serialiser.data, status=status.HTTP_200_OK)
-        
-    
-        
-        
-        
-    
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
+	
+	def get(self, request):
+		user = request.user
+		user_meals = Meal.objects.filter(user=user)
+		serialiser = MealSerialiser(data=user_meals, many=True)
+		
+		return Response(serialiser.data, status=status.HTTP_200_OK)
+		
+class GetConsumables(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
+	
+	def get(self, request):
+		consumbales = Consumable.objects.all()
+		serialiser = ConsumableSerialiser(consumbales, many=True)
+		
+		return Response(serialiser.data, status=status.HTTP_200_OK)
+		

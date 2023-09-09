@@ -27,9 +27,18 @@ class Consumable(models.Model):
     carbs = models.FloatField(default=0)
     sugar = models.FloatField(default=0)
     protein = models.FloatField(default=0)
-    meal = models.ManyToManyField(Meal, blank=True)
+    
+    
     
     def __str__(self) -> str:
         return self.name
 
 
+class MealItem(models.Model):
+    consumable = models.ForeignKey("Consumable", on_delete=models.CASCADE)
+    meal = models.ForeignKey("Meal", on_delete=models.CASCADE)
+    amount = models.IntegerField(default=100)
+    
+    def __str__(self) -> str:
+        return self.consumable.name
+    
