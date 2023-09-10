@@ -17,6 +17,8 @@ a {
     color: var(--accent);
 }
 
+
+
 input[type="text"], input[type="password"], input[type="number"] {
     font-family: Monolisa;
     color: var(--text);
@@ -107,6 +109,7 @@ button{
 
 #profile-page {
     display: grid;
+    height: 90vh;
     grid-template-columns: 1fr 1fr;
     place-items: center;
 }
@@ -127,3 +130,31 @@ button{
     grid-template-columns: 1fr 1fr;
 }
 
+#macros {
+    width: 40vw;
+    height: 80vh;
+    margin: 10px;
+    padding: 20px;
+    border-color: var(--accent);
+}
+
+svg {
+    height: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+   
+    #profile-page {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: auto;
+    }
+
+    #macros {
+        width: 80vw;
+        
+        
+    }
+
+
+  }

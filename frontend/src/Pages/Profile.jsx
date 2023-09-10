@@ -34,7 +34,7 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 	} else {
 		return (
 			<>
-				<h1 className='centred'>Welcome</h1>
+
                 <div id='profile-page'>
                     <Tracker client={client} key={key} />
                     <CreateMeal client={client} setKey={setKey}/>
