@@ -17,7 +17,7 @@ function Navbar({ loggedIn, client}) {
                         client: client
                     }
                 }}>
-                    <FontAwesomeIcon icon={faUser} style={{color: "white"}} size="xll"/>
+                    <FontAwesomeIcon icon={faUser} style={{color: "white"}} size="2xl"/>
                 </Link>   
                 </div>
             </div>  

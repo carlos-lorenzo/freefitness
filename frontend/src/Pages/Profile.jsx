@@ -10,6 +10,8 @@ import Tracker from './Components/Tracker';
 export default function Profile({ loggedIn , setLoggedIn, client }) {
 	let navigate = useNavigate();
 
+    const [key, setKey] = useState(Math.random());
+
 	function handleLogout(e) {
 		e.preventDefault();
 		client.post(
@@ -34,10 +36,8 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 			<>
 				<h1 className='centred'>Welcome</h1>
                 <div id='profile-page'>
-                    <Tracker client={client}/>
-                    <CreateMeal client={client}/>
-
-                    
+                    <Tracker client={client} key={key} />
+                    <CreateMeal client={client} setKey={setKey}/>
                 </div>
                 
 			</>

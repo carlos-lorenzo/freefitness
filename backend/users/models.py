@@ -25,11 +25,35 @@ class AppUserManager(BaseUserManager):
 
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
+	class Sex(models.IntegerChoices):
+		MALE = 1
+		FEMALE = 2
+	
+	class State(models.IntegerChoices):
+		CUTTING = 1
+		MAINTAINING =  2
+		BULKING = 3
+  
+	
+	class Activity(models.IntegerChoices):
+		NO = 1
+		LIGHT =  2
+		MODERATE = 3
+		VERY_ACTIVE = 4
+		EXTRA_ACTIVTE = 5
+ 	
 	user_id = models.AutoField(primary_key=True)
 	email = models.EmailField(max_length=50, unique=True)
 	username = models.CharField(max_length=50)
+	sex = models.IntegerField(Sex.choices, default=1)
+	height = models.PositiveIntegerField(default=180)
+	weight = models.PositiveIntegerField(default=65)
+	age = models.PositiveIntegerField(default=16)
+	state = models.IntegerField(State.choices, default=2)
+	activity = models.IntegerField(Activity.choices, default=3)
+ 
 	USERNAME_FIELD = 'email'
-	REQUIRED_FIELDS = ['username']
+	REQUIRED_FIELDS = ['username'] #"sex", "height", "weight", "age"
 	
 	@property
 	def is_staff(self):

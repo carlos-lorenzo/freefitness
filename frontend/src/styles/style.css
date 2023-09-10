@@ -22,7 +22,7 @@ input[type="text"], input[type="password"], input[type="number"] {
     color: var(--text);
     outline: none;
     height: 5vh;
-    width: 35vw;
+    
     font-size: 15px;
     cursor: pointer;
 }
@@ -35,6 +35,11 @@ option {
     width: 35vw;
     font-size: 15px;
     cursor: pointer;
+}
+
+select {
+    font-family: Monolisa;
+
 }
 
 button{
@@ -109,6 +114,16 @@ button{
 
 #meal-form {
     display: flex;
+    width: 80%;
+    
+    gap: 10px;
     flex-direction: column;
+}
+
+.meal-item {
+    display: grid;
+    width: 100%;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
 }
 

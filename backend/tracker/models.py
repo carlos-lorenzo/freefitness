@@ -23,6 +23,26 @@ class Tracker(models.Model):
             "protein": round(self.protein, 2)
         }
     
+    
+    @property
+    def maintenance_calories(self) -> float:
+        if self.user.sex == 1: # Male
+            BMR = 88.362 + (13.397 * self.user.weight) + (4.799 * self.user.height) - (5.677 * self.user.age) 
+        
+        elif self.user.sex == 2:
+            BMR = 655.1 * (9.563 * self.user.weight) + (1.85 * self.user.height) - (4.676 * self.user.age)
+        
+        COEFFICIENTS = [1.2, 1.375, 1.55, 1.725, 1.9]
+        STATE = [-300, 0, 300]
+        
+        return round((BMR * COEFFICIENTS[(self.user.activity - 1)]) + STATE[self.user.state - 1])
+    
+    @property
+    def daily_protein(self) -> float:
+        return self.user.weight * 2
+        
+          
+    
     def add_to_macros(self, macros: dict) -> None:
         self.calories += macros["calories"]
         self.fat += macros["fat"]
@@ -43,6 +63,9 @@ class Tracker(models.Model):
         self.carbs = round(self.carbs)
         self.sugar = round(self.sugar)
         self.protein = round(self.protein)
+    
+    
+
     
 class Meal(models.Model):
     user = models.ForeignKey("users.AppUser", on_delete=models.CASCADE)

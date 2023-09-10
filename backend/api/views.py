@@ -71,7 +71,7 @@ class CreateMeal(APIView):
 		new_meal.save()
   
 		meal_items = dict(request.POST.items())
-		print(meal_items)
+
 
 		for i in range(len(meal_items) // 2):
 			consumable_name = meal_items[f"name_{i}"]
@@ -117,7 +117,7 @@ class Track(APIView):
 		user = request.user
 		tracker = Tracker.objects.all().get(user=user)
 		tracker.reset_macros()
-		
+		        
 		meals = Meal.objects.filter(user=user)
 		for meal in meals:
 			meal_items = MealItem.objects.all().filter(meal=meal)
@@ -128,7 +128,7 @@ class Track(APIView):
 		
 		serialiser = TrackerSerialiser(tracker, many=False)
 				
-		
+		print(tracker.maintenance_calories)
 		
 		return Response(serialiser.data, status=status.HTTP_200_OK)
 		

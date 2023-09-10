@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import MealItem from './MealItem';
 import uuid from "react-native-uuid";
 
-export default function CreateMeal({ client }) {
+export default function CreateMeal({ client, setKey}) {
 
     const [items, setItems] = useState([0]);
     
@@ -21,6 +21,7 @@ export default function CreateMeal({ client }) {
             
 		).then(function(response){
             setItems([0])
+            setKey(Math.random())
 		})
 	}
 
@@ -40,8 +41,8 @@ export default function CreateMeal({ client }) {
                     <MealItem key={uuid.v4()} client={client} index={item}/>
                 )
                 })}
-            <button onClick={addItem}><h4>Add item</h4></button>
-			<button type='submit'><h4>Create Meal</h4></button>
+            <button className="border" onClick={addItem}><h4>Add item</h4></button>
+			<button className="border" type='submit'><h4>Create Meal</h4></button>
 		</form>
         </>
         

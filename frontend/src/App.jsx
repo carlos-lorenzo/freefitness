@@ -18,7 +18,8 @@ axios.defaults.withCredentials = true;
 const client = axios.create({
 	baseURL: "http://192.168.1.53:8000"
 })
-client.post()
+
+
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	

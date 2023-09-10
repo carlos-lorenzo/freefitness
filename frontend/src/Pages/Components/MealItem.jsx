@@ -15,7 +15,7 @@ export default function MealItem({ client, index }) {
     }
     return (
 		<div className='meal-item'>
-			<select name={`name_${index}`} id="consumable">
+			<select name={`name_${index}`} className="consumable">
 					{consumables.map(consumable => {
 						return (
 							<option key={consumable.id} value={consumable.name}>{consumable.name}</option>
