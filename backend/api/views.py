@@ -131,6 +131,5 @@ class Track(APIView):
 		tracker_data = dict(serialiser.data)
 		tracker_data["daily_protein"] = tracker.daily_protein
 		tracker_data["daily_calories"] = tracker.maintenance_calories
-		print(tracker_data)
 		return Response(tracker_data, status=status.HTTP_200_OK)
 		
