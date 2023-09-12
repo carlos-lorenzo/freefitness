@@ -32,10 +32,9 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 	} else {
 		return (
 			<>
-
                 <div id='profile-page'>
-                    <Tracker client={client} key={key} />
-                    <CreateMeal client={client} setKey={setKey}/>
+                    <h1>Profile</h1>
+					<button onClick={handleLogout} className='border'>Logount</button>
                 </div>
                 
 			</>
