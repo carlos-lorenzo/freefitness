@@ -28,8 +28,8 @@ DEBUG = True
 
 ip = socket.gethostbyname(socket.gethostname())
 
-ALLOWED_HOSTS = [ip]
-CSRF_TRUSTED_ORIGINS = [f"http://{ip}:3000"]
+ALLOWED_HOSTS = [ip, "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = [f"http://{ip}:3000", "http://127.0.0.1:3000"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 

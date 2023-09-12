@@ -11,6 +11,15 @@ function Navbar({ loggedIn, client}) {
                     <FontAwesomeIcon icon={faHouse} style={{color: "white"}}/>
                 </Link>
                 <Link to ={{
+                    pathname: "diet/",
+                    state: {
+                        loggedIn: loggedIn,
+                        client: client
+                    }
+                }}>
+                    <FontAwesomeIcon icon={faSquarePlus} style={{color: "white"}} size="2xl"/>
+                </Link> 
+                <Link to ={{
                     pathname: "profile/",
                     state: {
                         loggedIn: loggedIn,

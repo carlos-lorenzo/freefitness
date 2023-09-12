@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 import CreateMeal from './Components/CreateMeal';
 import Tracker from './Components/Tracker';
-
+import MustLogIn from './Components/MustLogIn';
 
 export default function Profile({ loggedIn , setLoggedIn, client }) {
 	let navigate = useNavigate();
@@ -26,9 +26,7 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 
 	if (!loggedIn) {
 		return (
-            <div id='must-login'>
-                <h2>You're not logged in, {<Link to="/login" >Log In</Link>}</h2>
-            </div>
+            <MustLogIn />
         
         )
 	} else {
