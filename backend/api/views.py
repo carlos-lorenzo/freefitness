@@ -117,7 +117,7 @@ class Track(APIView):
 		user = request.user
 		tracker = Tracker.objects.all().get(user=user)
 		tracker.reset_macros()
-		        
+				
 		meals = Meal.objects.filter(user=user)
 		for meal in meals:
 			meal_items = MealItem.objects.all().filter(meal=meal)
@@ -140,12 +140,15 @@ class UpdaetUserState(APIView):
 	authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
-	
 		user = request.user
+		# Get the new_state from the request data (assuming it's a string)
+		new_state = request.data.get("state")
 		
-		new_state = dict(request.POST.items())["state"]
-  
-		user.State = new_state
-		user.save()
-		
-		return Response(status=status.HTTP_200_OK)
+		if new_state is not None:
+			# Update the user's state
+			user.state = new_state
+			user.save()
+			
+			return Response({"message": "User state updated successfully"}, status=status.HTTP_200_OK)
+		else:
+			return Response({"message": "Invalid state value in the request"}, status=status.HTTP_400_BAD_REQUEST)
