@@ -107,7 +107,7 @@ button{
     gap: 10px;
 }
 
-#profile-page {
+#meal-page {
     display: grid;
     height: 90vh;
     grid-template-columns: 1fr 1fr;
@@ -144,7 +144,7 @@ svg {
 
 @media only screen and (max-width: 600px) {
    
-    #profile-page {
+    #meal-page {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
         height: auto;

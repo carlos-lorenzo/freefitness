@@ -9,7 +9,7 @@ export default function MealItem({ client, index }) {
             "/api/get_consumables",
             {withCredentials: true}
         ).then(function(response){
-            setConsumables([...consumables, response.data[0]]);
+            setConsumables([...consumables, ...response.data]);
             
         })
     }

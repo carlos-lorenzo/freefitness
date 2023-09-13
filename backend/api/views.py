@@ -133,3 +133,19 @@ class Track(APIView):
 		tracker_data["daily_calories"] = tracker.maintenance_calories
 		return Response(tracker_data, status=status.HTTP_200_OK)
 		
+  
+	
+class UpdaetUserState(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
+	
+	def post(self, request):
+	
+		user = request.user
+		
+		new_state = dict(request.POST.items())["state"]
+  
+		user.State = new_state
+		user.save()
+		
+		return Response(status=status.HTTP_200_OK)

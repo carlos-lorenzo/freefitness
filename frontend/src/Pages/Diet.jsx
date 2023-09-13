@@ -9,7 +9,7 @@ export default function Diet({ loggedIn, setLoggedIn, client }) {
     const [key, setKey] = useState(Math.random());
     return  (
     <div>
-        <div id='profile-page'>
+        <div id='meal-page'>
             <Tracker client={client} key={key} />
             <CreateMeal client={client} setKey={setKey}/>
         </div>

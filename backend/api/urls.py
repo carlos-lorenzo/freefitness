@@ -12,4 +12,5 @@ urlpatterns = [
 	path('get_meals', views.GetUserMeals.as_view(), name='getmeals'),
 	path('get_consumables', views.GetConsumables.as_view(), name='getconsumables'),
     path('track', views.Track.as_view(), name='track'),
+    path('update_state', views.UpdaetUserState.as_view(), name='updatestate'),
 ]
