@@ -5,11 +5,11 @@ import { Link, useNavigate } from "react-router-dom"
 
 import MustLogIn from './Components/MustLogIn';
 import SetState from './Components/SetState';
+import SetHeight from './Components/SetHeight';
+
 
 export default function Profile({ loggedIn , setLoggedIn, client }) {
 	let navigate = useNavigate();
-
-    
 
 	function handleLogout(e) {
 		e.preventDefault();
@@ -21,9 +21,6 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 			navigate('/');
 		});
 	}
-	
-	
-		
 	
 
 	if (!loggedIn) {
@@ -38,7 +35,7 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
                     <h1>Profile</h1>
 					<button onClick={handleLogout} className='border'>Logout</button>
 					<SetState client={client}/>
-					
+					<SetHeight client={client}/>
                 </div>
                 
 			</>

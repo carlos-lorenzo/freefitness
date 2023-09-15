@@ -135,7 +135,7 @@ class Track(APIView):
 		
   
 	
-class UpdaetUserState(APIView):
+class UpdateUserState(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
 	authentication_classes = (SessionAuthentication,)
 	
@@ -143,12 +143,32 @@ class UpdaetUserState(APIView):
 		user = request.user
 		# Get the new_state from the request data (assuming it's a string)
 		new_state = request.data.get("state")
-		
+		print(dir(user))
 		if new_state is not None:
 			# Update the user's state
 			user.state = new_state
 			user.save()
 			
-			return Response({"message": "User state updated successfully"}, status=status.HTTP_200_OK)
+			return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
 		else:
-			return Response({"message": "Invalid state value in the request"}, status=status.HTTP_400_BAD_REQUEST)
+			return Response({"message": "Invalid value in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UpdateUserHeight(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
+	
+	def post(self, request):
+		user = request.user
+		
+		# Get the new_state from the request data (assuming it's a string)
+		new_height = request.data.get("height")
+		
+		if new_height is not None:
+			# Update the user's state
+			user.height = new_height
+			user.save()
+			
+			return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
+		else:
+			return Response({"message": "Invalid value in the request"}, status=status.HTTP_400_BAD_REQUEST)
