@@ -1,7 +1,7 @@
 :root {
     --text: #161515;
     --background: #ffffff;
-    --primary: #2bd4d4;
+    --primary: #0a6161;
     --secondary: #ecb1b1;
     --accent: #b12f2f;
 }
@@ -20,7 +20,7 @@ a {
 
 
 input[type="text"], input[type="password"], input[type="number"] {
-    font-family: Monolisa;
+    font-family: inherit;
     color: var(--text);
     outline: none;
     height: 5vh;
@@ -30,7 +30,7 @@ input[type="text"], input[type="password"], input[type="number"] {
 }
 
 option {
-    font-family: Monolisa;
+    font-family: inherit;
     color: var(--text);
     background-color: var(--background);
     outline: none;
@@ -40,10 +40,10 @@ option {
 }
 
 select {
-    font-family: Monolisa;
+    font-family: inherit;
     font-size: 15px;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding-top: calc((5vh - 15px) / 2);
+    padding-bottom: calc((5vh - 15px) / 2);
     padding-left: 15px;
 }
 
@@ -51,10 +51,28 @@ select {
 button{
     color: var(--background);
     background-color: var(--text);
-    font-family: Monolisa;
+    font-family: inherit;
     outline: none;
     font-size: 15px;
     cursor: pointer;
+}
+
+#home {
+    display: grid;
+    height: 80vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+}
+
+h1#home-title {
+    color: var(--accent);
+    font-size: 80px;
+}
+
+button#villain-arc{
+    background-color: var(--primary);
+    border-color: var(--primary);
 }
 
 .navbar {

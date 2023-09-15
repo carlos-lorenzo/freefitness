@@ -17,7 +17,7 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 	} else {
 		return (
 			<>
-                <div id='profile-page'>
+                <div id='profile-page' className='full-height full-width'>
                     <h1>Profile</h1>
 					<SetNumeric client={client} property={"height"} unit={"cm"}/>
                     <SetNumeric client={client} property={"weight"} unit={"kg"}/>
