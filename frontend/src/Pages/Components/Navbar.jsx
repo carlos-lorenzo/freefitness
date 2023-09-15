@@ -8,7 +8,7 @@ function Navbar({ loggedIn, client}) {
             <div className="navbar">
                 <div id="navbar-items">
                 <Link to="/" className="nav-link">
-                    <FontAwesomeIcon icon={faHouse} style={{color: "white"}}/>
+                    <FontAwesomeIcon icon={faHouse} style={{color: "white"}} size="2xl"/>
                 </Link>
                 {loggedIn && (
                         <Link

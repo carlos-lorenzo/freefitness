@@ -19,7 +19,8 @@ export default function SetState({ client }) {
 
     return (
     
-        <form onSubmit={handleStateUpdate}>
+        <form onSubmit={handleStateUpdate} className='property-form'>
+            <label htmlFor="state-select">State</label>
             <select name="state" id="state-select">
                 <option value="1">Cutting</option>
                 <option value="2">Maintaining</option>

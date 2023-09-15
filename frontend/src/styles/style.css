@@ -24,7 +24,7 @@ input[type="text"], input[type="password"], input[type="number"] {
     color: var(--text);
     outline: none;
     height: 5vh;
-    
+    padding-left: 15px;
     font-size: 15px;
     cursor: pointer;
 }
@@ -32,17 +32,21 @@ input[type="text"], input[type="password"], input[type="number"] {
 option {
     font-family: Monolisa;
     color: var(--text);
+    background-color: var(--background);
     outline: none;
-    height: 5vh;
-    width: 35vw;
     font-size: 15px;
     cursor: pointer;
+    padding: 10px;
 }
 
 select {
     font-family: Monolisa;
-
+    font-size: 15px;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 15px;
 }
+
 
 button{
     color: var(--background);
@@ -107,6 +111,11 @@ button{
     gap: 10px;
 }
 
+#logout-button {
+    width: 30%;
+    
+}
+
 #meal-page {
     display: grid;
     height: 90vh;
@@ -138,6 +147,22 @@ button{
     border-color: var(--accent);
 }
 
+#profile-page {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.property-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 50vw;
+}
+
 svg {
     height: 50%;
 }
@@ -152,8 +177,11 @@ svg {
 
     #macros {
         width: 80vw;
-        
-        
+    }
+
+
+    .property-form {
+        width: 70vw;
     }
 
 
