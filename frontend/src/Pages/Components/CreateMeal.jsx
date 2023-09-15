@@ -14,13 +14,13 @@ export default function CreateMeal({ client, setKey}) {
         const formData = new FormData(form);
 
 		client.post(
-			"/api/update_state",
+			"/api/create_meal",
             formData,
 			{withCredentials: true},
             
             
 		).then(function(response){
-            console.log(response)
+            setKey(Math.random());
 		})
 	}
 

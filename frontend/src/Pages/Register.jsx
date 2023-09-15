@@ -27,40 +27,48 @@ export default function Register({ setLoggedIn, client }) {
             }
             ).then(function(res) {
                 setLoggedIn(true);
-                navigate('/profile');
+                navigate('/challenge');
             });
         });
     }
 
   return (
-    <form onSubmit={submitRegistration}>
+    <div className='centred full-width full-height' id='register-container'>
+        <form onSubmit={submitRegistration} id='register-form'>
+            <h2>Register</h2> 
+            <input 
+            type="text" 
+            className='border'
+            id="email"
+            placeholder="email"
+            autoComplete="off"
+            value={email}
+            onChange={(e) => {setEmail(e.target.value)}}/>
 
-        <input 
-        type="text" 
-        id="email"
-        placeholder="email"
-        autoComplete="off"
-        value={email}
-        onChange={(e) => {setEmail(e.target.value)}}/>
+            <input 
+            type="text"
+            className='border' 
+            id="username"
+            placeholder="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => {setUsername(e.target.value)}}/>
 
-        <input 
-        type="text" 
-        id="username"
-        placeholder="username"
-        autoComplete="off"
-        value={username}
-        onChange={(e) => {setUsername(e.target.value)}}/>
-
-        <input 
-        type="password" 
-        id="password"
-        placeholder="password"
-        autoComplete="none"
-        value={password}
-        onChange={(e) => {setPassword(e.target.value)}}/>
+            <input 
+            type="password" 
+            className='border'
+            id="password"
+            placeholder="password"
+            autoComplete="none"
+            value={password}
+            onChange={(e) => {setPassword(e.target.value)}}/>
 
 
-        <button ><h4>Register</h4></button>
-    </form>
+            <button className='border'><h4>Register</h4></button>
+            
+        </form>
+        
+    </div>
+    
   )
 }

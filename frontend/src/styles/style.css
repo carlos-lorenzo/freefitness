@@ -129,6 +129,13 @@ button#villain-arc{
     gap: 10px;
 }
 
+#register-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
 #logout-button {
     width: 30%;
     
@@ -163,6 +170,13 @@ button#villain-arc{
     margin: 10px;
     padding: 20px;
     border-color: var(--accent);
+}
+
+#challenge {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #profile-page {
@@ -202,5 +216,19 @@ svg {
         width: 70vw;
     }
 
+    #home {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
 
+    
+
+    h1#home-title {
+        color: var(--accent);
+        font-size: 60px;
+    }
+
+    h2#home-description {
+        font-size: 25px;
+    }
   }

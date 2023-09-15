@@ -13,10 +13,10 @@ export default function Home() {
 
     return (
         <div id='home'>
-            <span>
-                <h1 id='home-title'>FREE-FITNESS</h1>
+            <span id='home-content'>
+                <h1 id='home-title'>BECOME BETTER.</h1>
                 <h2 id='home-description'>
-                    A <span style={primary}>GODLIKE</span> physique can only be achieved through a rigorous diet. <br />
+                    A <span style={primary}>GODLIKE</span> physique can <span style={accent}>ONLY</span> be achieved through a rigorous diet. <br />
                     So start <span style={primary}>CUTTING</span> you <span style={accent}>FAT FUCK</span> and <span style={primary}>BULKING</span> you <span style={accent}>SKINNY BITCH</span>.
                 </h2>
                 <button onClick={executeOrder66} id="villain-arc" className='border'><h3>START VILLAIN ARC</h3></button>

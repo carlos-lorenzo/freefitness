@@ -14,9 +14,9 @@ export default function Tracker({ client, key}) {
                 setMacros(response.data);
             });
 
-        // You can also return a cleanup function if needed
+       
         return () => {
-            // Perform cleanup tasks here, if any
+            
         };
     }, [key]);
         

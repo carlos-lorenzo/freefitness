@@ -9,6 +9,9 @@ import Profile from './Pages/Profile';
 import LogIn from './Pages/LogIn';
 import Register from './Pages/Register';
 import Diet from './Pages/Diet';
+import Challenge from './Pages/Challenge';
+
+
 import "./styles/style.css"
 
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -32,6 +35,7 @@ function App() {
 				<Route path='/login' element={<LogIn setLoggedIn={setLoggedIn} client={client}/>} />
 				<Route path='/register' element={<Register setLoggedIn={setLoggedIn} client={client}/>} />
 				<Route path='/diet' element={<Diet loggedIn={loggedIn} client={client}/>} />
+                <Route path='/challenge' element={<Challenge/>} />
 
 			</Routes>
 		</>
