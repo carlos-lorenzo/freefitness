@@ -8,7 +8,7 @@ export default function Home() {
     let navigate = useNavigate();
 
     function executeOrder66 () {
-        navigate("/profile");
+        navigate("/register");
     }
 
     return (
@@ -21,7 +21,6 @@ export default function Home() {
                 </h2>
                 <button onClick={executeOrder66} id="villain-arc" className='border'><h3>START VILLAIN ARC</h3></button>
             </span>
-            
         </div>
     );
 }

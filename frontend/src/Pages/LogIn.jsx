@@ -32,7 +32,7 @@ export default function LogIn({ setLoggedIn, client }) {
             <div className='centred full-width full-height' id='login-container'>
                 
                 <form onSubmit={handleLogIn} id='login-form'>
-                    <h2>Log In</h2> 
+                    <h2>Login</h2> 
                     <input 
                     className='border'
                     type="text" 

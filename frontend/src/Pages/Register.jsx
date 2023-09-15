@@ -65,7 +65,7 @@ export default function Register({ setLoggedIn, client }) {
 
 
             <button className='border'><h4>Register</h4></button>
-            
+            <p>Already have an account? {<Link to="/login" >Login</Link>}</p> 
         </form>
         
     </div>
