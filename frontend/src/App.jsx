@@ -12,7 +12,7 @@ import Diet from './Pages/Diet';
 import Challenge from './Pages/Challenge';
 
 
-import "./styles/style.css"
+
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";

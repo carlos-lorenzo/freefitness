@@ -1,18 +1,8 @@
 import React from 'react'
 import { useState, useRef } from 'react';
-export default function MealItem({ client, index }) {
+export default function MealItem({ client, index, consumables }) {
 
-    const [consumables, setConsumables] = useState([])
-
-    if (consumables.length === 0){
-        client.get(
-            "/api/get_consumables",
-            {withCredentials: true}
-        ).then(function(response){
-            setConsumables([...consumables, ...response.data]);
-            
-        })
-    }
+    
     return (
 		<div className='meal-item'>
 			<select name={`name_${index}`} className="consumable">

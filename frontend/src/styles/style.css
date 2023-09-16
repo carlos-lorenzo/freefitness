@@ -1,8 +1,9 @@
+
 :root {
     --text: #161515;
     --background: #ffffff;
     --primary: #0a6161;
-    --secondary: #ecb1b1;
+    --secondary: #e6b32f;
     --accent: #b12f2f;
     
 }
@@ -12,7 +13,7 @@ body {
     margin: 0;
     background-color: var(--background);
     color: var(--text);
-    font-family: Monolisa;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 a {
@@ -72,10 +73,7 @@ h1#home-title {
     font-size: 80px;
 }
 
-button#villain-arc{
-    background-color: var(--primary);
-    border-color: var(--primary);
-}
+
 
 .navbar {
     display: grid;
@@ -179,6 +177,7 @@ button#villain-arc{
 
 #challenge {
     display: flex;
+    padding: 20px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -204,8 +203,38 @@ button#villain-arc{
 #macro-info {
     text-align: center;
 }
+
+#meal-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+button.positive {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+button.neutral {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+button.negative {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
 svg {
     height: 40%;
+}
+
+button.important {
+    transition: all 0.3s ease-in-out;
+}
+
+button.important:hover {
+    scale: 1.2;
 }
 
 @media only screen and (max-width: 600px) {
@@ -250,5 +279,11 @@ svg {
 
     h2#home-description {
         font-size: 25px;
+    }
+
+    #must-login {
+        text-align: center;
+        padding: 20px;
+        height: 70vh;
     }
   }

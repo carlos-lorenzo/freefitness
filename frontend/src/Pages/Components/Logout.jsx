@@ -15,6 +15,6 @@ export default function Logout({ client, setLoggedIn }) {
 		});
 	}
     return (
-        <button onClick={handleLogout} className='border' id="logout-button"><h4>Logout</h4></button>
+        <button onClick={handleLogout} className='border negative' id="logout-button"><h4>Logout</h4></button>
     )
 }

@@ -13,10 +13,10 @@ export default function Challenge() {
 
     return (
         <div id="challenge" className='full-height'>
-            <h3>Ah yes... I see you have chosen wisely. <br/>Let's see if ur worthy. <br/>10 pushups, NOW. <br/>...yes, NOW.</h3>
+            <h2>Ah yes... I see you have chosen wisely. <br/>Let's see if ur worthy. <br/>10 pushups, NOW. <br/>...yes, NOW.</h2>
             
             
-            <button onClick={navigateToProfile} className='border important'><h2>I'm Worthy</h2></button>
+            <button onClick={navigateToProfile} className='border important negative'><h1>I'm Worthy</h1></button>
             
             
         </div>
