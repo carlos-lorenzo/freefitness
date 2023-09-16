@@ -34,7 +34,7 @@ export default function SetNumeric({ client, property, unit }) {
         <form onSubmit={handlePropertyUpdate} className='property-form'>
             <label htmlFor={property}>{property.charAt(0).toUpperCase() + property.slice(1)}</label>
             <input id={property} name={property} type="number" placeholder={`${property} (${unit})`} min={min} max={max}/>
-            <button type="submit" className='border'><h4>Submit</h4></button>
+            <button type="submit" className='border'><h4>Update</h4></button>
         </form>
     )
 }

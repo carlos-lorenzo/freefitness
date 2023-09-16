@@ -27,7 +27,7 @@ export default function SetState({ client }) {
                 <option value="2">Maintaining</option>
                 <option value="3">Bulking</option>
             </select>
-            <button className="border" type='submit'><h4>Submit</h4></button>
+            <button className="border" type='submit'><h4>Update</h4></button>
         </form>
    
     )

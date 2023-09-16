@@ -25,7 +25,7 @@ export default function SetSex({ client }) {
                 <option value="1">Male</option>
                 <option value="2">Female</option>
             </select>
-            <button className="border" type='submit'><h4>Submit</h4></button>
+            <button className="border" type='submit'><h4>Update</h4></button>
         </form>
    
     )
