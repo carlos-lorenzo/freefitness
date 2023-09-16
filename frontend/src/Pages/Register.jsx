@@ -27,7 +27,7 @@ export default function Register({ setLoggedIn, client }) {
             }
             ).then(function(res) {
                 setLoggedIn(true);
-                navigate('/challenge');
+                navigate('/profile');
             });
         });
     }

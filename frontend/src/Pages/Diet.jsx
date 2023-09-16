@@ -15,12 +15,15 @@ export default function Diet({ loggedIn, setLoggedIn, client }) {
         )
     } else {
         return  (
-            <div>
-                <div id='meal-page'>
+            
+            <div id='meal-page'>
+                
+                  
                     <Tracker client={client} key={key} />
-                    <CreateMeal client={client} setKey={setKey}/>
-                </div>
+                
+                <CreateMeal client={client} setKey={setKey}/>
             </div>
+            
         )
     }
     

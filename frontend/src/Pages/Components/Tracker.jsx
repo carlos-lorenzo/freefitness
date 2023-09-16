@@ -19,13 +19,29 @@ export default function Tracker({ client, key}) {
             
         };
     }, [key]);
-        
     
+    let proteinColour = "#b12f2f";
+    if (macros["protein"] >= macros["daily_protein"]){
+        proteinColour = "#0a6161";
+    }
+
+    let caloriesColour = "#b12f2f";
+    if (macros["protein"] >= macros["daily_protein"]){
+        caloriesColour = "#0a6161";
+    }
+    
+    let borderColour = "#b12f2f";
+    if ((macros["protein"] >= macros["daily_protein"]) && (macros["protein"] >= macros["daily_protein"])) {
+        borderColour = "#0a6161";
+    }
 
     return (
-        <div id='macros' className='border'>
+        <span id='macro-info'>
+            <h2>Today's Macros</h2>
+        <div id='macros' className='border' style={{ borderColor: borderColour }}>
+            <h4>Protein</h4>
             <PieChart
-            data={[{ title:"protein", value: macros["protein"], color: '#b12f2f' }]}
+            data={[{ title:"protein", value: macros["protein"], color: proteinColour }]}
             totalValue={macros[`daily_protein`]}
             lineWidth={10}
             rounded={true}
@@ -33,14 +49,15 @@ export default function Tracker({ client, key}) {
             labelStyle={{
                 fontSize: '15px',
                 fontFamily: 'Monolisa',
-                fill: '#b12f2f',
+                fill: proteinColour,
             }}
             labelPosition={0}
             />
 
+            <h4>Calories</h4>
             <PieChart
             className='tracker-chart'
-            data={[{ value: macros["calories"], color: '#b12f2f' }]}
+            data={[{ value: macros["calories"], color: caloriesColour }]}
             totalValue={macros[`daily_calories`]}
             lineWidth={10}
             rounded={true}
@@ -48,11 +65,13 @@ export default function Tracker({ client, key}) {
             labelStyle={{
                 fontSize: '15px',
                 fontFamily: 'Monolisa',
-                fill: '#b12f2f',
+                fill: caloriesColour,
             }}
             labelPosition={0}
             />
 
         </div>
+        </span>
+        
     )
 }

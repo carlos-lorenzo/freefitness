@@ -8,7 +8,7 @@ export default function Home() {
     let navigate = useNavigate();
 
     function executeOrder66 () {
-        navigate("/register");
+        navigate("/challenge");
     }
 
     return (
