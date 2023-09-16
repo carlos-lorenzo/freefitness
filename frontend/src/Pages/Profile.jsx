@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import MustLogIn from './Components/MustLogIn';
 import SetState from './Components/SetState';
+import SetSex from './Components/SetSex';
 import SetNumeric from './Components/SetNumeric';
 import Logout from './Components/Logout';
 
@@ -20,6 +21,7 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
                     <h1>Profile</h1>
 					<SetNumeric client={client} property={"height"} unit={"cm"}/>
                     <SetNumeric client={client} property={"weight"} unit={"kg"}/>
+                    <SetSex client={client}/>
                     <SetState client={client}/>
                     <Logout client={client} setLoggedIn={setLoggedIn}/>
                 </div>

@@ -140,6 +140,8 @@ button#villain-arc{
 
 #logout-button {
     width: 30%;
+    margin-top: 25px;
+    
     
 }
 
@@ -183,7 +185,7 @@ button#villain-arc{
 }
 
 #profile-page {
-    padding-top: 50px;
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -195,6 +197,7 @@ button#villain-arc{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    gap: 5px;
     width: 50vw;
 }
 
