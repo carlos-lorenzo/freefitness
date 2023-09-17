@@ -27,6 +27,8 @@ export default function Tracker({ client, key}) {
     const dailyCalories = macros["daily_calories"];
     const state = macros["state"];
 
+    let valueCalories = calories;
+
     const positiveColour = "#0a6161";
     const negativeColour = "#b12f2f";
     const neutralColour = "#e6b32f";
@@ -42,8 +44,12 @@ export default function Tracker({ client, key}) {
 
 
     if (state === 1) { // cutting
+
+        valueCalories = dailyCalories - calories;
+
         if (calories <=dailyCalories) {
             caloriesColour = positiveColour;
+            borderColour = neutralColour;
             
             if (proteinColour === positiveColour) {
                 borderColour = positiveColour;
@@ -90,7 +96,7 @@ export default function Tracker({ client, key}) {
             <h4>Calories</h4>
             <PieChart
             className='tracker-chart'
-            data={[{ title:"calories", value: calories, color: caloriesColour }]}
+            data={[{ title:"calories", value: valueCalories, color: caloriesColour }]}
             totalValue={dailyCalories}
             lineWidth={10}
             rounded={true}

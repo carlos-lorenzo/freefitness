@@ -62,7 +62,7 @@ button{
 
 #home {
     display: grid;
-    height: 80vh;
+    
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     place-items: center;
@@ -74,6 +74,23 @@ h1#home-title {
 }
 
 
+#footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--text);
+    width: 100vw;
+    height: 10vh;
+    place-items: center;
+    text-align: center;
+}
+
+.footer-item {
+    width: 100%;
+}
+
+.contrast {
+    color: var(--background);
+}
 
 .navbar {
     display: grid;
@@ -99,7 +116,7 @@ h1#home-title {
 }
 
 .full-height {
-    height: 80vh;
+    height: 100vh;
 }
 
 .centred {
@@ -139,7 +156,7 @@ h1#home-title {
 #logout-button {
     width: 30%;
     margin-top: 25px;
-    
+    margin-bottom: 50px;
     
 }
 
@@ -148,6 +165,7 @@ h1#home-title {
     place-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
+    margin-bottom: 50px;
     
 }
 

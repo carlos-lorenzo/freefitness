@@ -5,6 +5,7 @@ import axios from "axios";
 
 import Navbar from './Pages/Components/Navbar';
 import Home from './Pages/Home';
+import Footer from './Pages/Components/Footer';
 import Profile from './Pages/Profile';
 import LogIn from './Pages/LogIn';
 import Register from './Pages/Register';
@@ -38,6 +39,7 @@ function App() {
                 <Route path='/challenge' element={<Challenge/>} />
 
 			</Routes>
+            <Footer/>
 		</>
   	)
 }

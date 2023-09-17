@@ -22,7 +22,7 @@ export default function LogIn({ setLoggedIn, client }) {
             }
         ).then(function(res) {
             setLoggedIn(true);
-            navigate('/profile');
+            navigate('/diet');
 
         });
     }
