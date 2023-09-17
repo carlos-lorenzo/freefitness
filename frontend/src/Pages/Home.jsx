@@ -12,7 +12,7 @@ export default function Home() {
     }
 
     return (
-        <div id='home' className='full-height'>
+        <div id='home' >
             <span id='home-content'>
                 <h1 id='home-title'>BECOME BETTER.</h1>
                 <h2 id='home-description'>

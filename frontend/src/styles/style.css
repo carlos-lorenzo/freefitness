@@ -62,7 +62,9 @@ button{
 
 #home {
     display: grid;
-    
+    height: 80vh;
+    margin-bottom: 10vh;
+   
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     place-items: center;
