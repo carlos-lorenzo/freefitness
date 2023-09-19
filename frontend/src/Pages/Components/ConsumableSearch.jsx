@@ -10,7 +10,7 @@ export default function ConsumableSearch({ consumables }) {
         let currentQuery = e.target.value
         setQuery(currentQuery);
         setQueryResulsts([]);
-        
+
         if (!currentQuery) {
             return 0;
         }
@@ -18,28 +18,29 @@ export default function ConsumableSearch({ consumables }) {
         let currteQueryResults = [];
 
         consumables.map(consumable => {
-            
-            if (consumable.name.toLowerCase().includes(query.toLowerCase())){
-                currteQueryResults.push(consumable);     
+
+            if (consumable.name.toLowerCase().includes(query.toLowerCase())) {
+                currteQueryResults.push(consumable);
             }
         })
 
         setQueryResulsts(currteQueryResults);
-        
 
-        
+
+
     }
 
     return (
         <>
-            <h1>serach</h1>
-            <input type="search" onChange={updateQuery} value={query}/>
+            <h1>search</h1>
+            <input type="search" onChange={updateQuery} value={query} />
             <div id='search-results'>
                 {queryResults.map(consumable => {
                     return (
-                        <div className='consumable' key={consumable.id}>
-                            <h3>{consumable.name}</h3>
-                        </div>
+                        <>
+                            <label htmlFor={consumable.id}>{consumable.name}</label>
+                            <input type="checkbox" value={consumable.name} key={consumable.id} id={consumable.id} className='consumableCheckbox' />
+                        </>
                     )
                 })}
             </div>
