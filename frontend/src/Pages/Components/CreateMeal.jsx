@@ -72,7 +72,7 @@ export default function CreateMeal({ client, setKey}) {
             </div>
             
             <button className="border positive" type='submit'><h4>Create Meal</h4></button>
-            <ConsumableSearch consumables={consumables}/>
+            
 
 		</form>
         </>

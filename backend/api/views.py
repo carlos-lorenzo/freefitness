@@ -74,6 +74,7 @@ class CreateMeal(APIView):
   
 		meal_items = dict(request.POST.items())
 
+		print(meal_items)
 
 		for i in range(len(meal_items) // 2):
 			consumable_name = meal_items[f"name_{i}"]

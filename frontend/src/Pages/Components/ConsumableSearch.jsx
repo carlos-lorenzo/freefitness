@@ -1,49 +1,50 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function ConsumableSearch({ consumables }) {
-
+export default function ConsumableSearch({ consumables, index }) {
     const [query, setQuery] = useState("");
-    const [queryResults, setQueryResulsts] = useState([]);
+    const [queryResults, setQueryResults] = useState([]);
+    const [selectedConsumable, setSelectedConsumable] = useState(null);
 
     function updateQuery(e) {
-        let currentQuery = e.target.value
+        const currentQuery = e.target.value;
         setQuery(currentQuery);
-        setQueryResulsts([]);
+        setQueryResults([]);
 
         if (!currentQuery) {
-            return 0;
+            return;
         }
 
-        let currteQueryResults = [];
+        const currentQueryResults = consumables.filter((consumable) =>
+            consumable.name.toLowerCase().includes(currentQuery.toLowerCase())
+        );
 
-        consumables.map(consumable => {
+        setQueryResults(currentQueryResults);
+    }
 
-            if (consumable.name.toLowerCase().includes(query.toLowerCase())) {
-                currteQueryResults.push(consumable);
-            }
-        })
-
-        setQueryResulsts(currteQueryResults);
-
-
-
+    function handleCheckboxChange(consumable) {
+        setSelectedConsumable(consumable);
+        setQueryResults([consumable]);
     }
 
     return (
         <>
-            <h1>search</h1>
-            <input type="search" onChange={updateQuery} value={query} />
-            <div id='search-results'>
-                {queryResults.map(consumable => {
-                    return (
-                        <>
-                            <label htmlFor={consumable.id}>{consumable.name}</label>
-                            <input type="checkbox" value={consumable.name} key={consumable.id} id={consumable.id} className='consumableCheckbox' />
-                        </>
-                    )
-                })}
+            <input type="text" onChange={updateQuery} value={query} placeholder='search...'/>
+            <div className='search-results'>
+                {queryResults.map((consumable) => (
+                    <div key={`${consumable.id}_${index}`}>
+                        <label htmlFor={consumable.id}>{consumable.name}</label>
+                        <input
+                            type="checkbox"
+                            name={`name_${index}`}
+                            value={consumable.name}
+                            checked={selectedConsumable === consumable}
+                            onChange={() => handleCheckboxChange(consumable)}
+                            id={`${consumable.id}_${index}`}
+                            className='consumableCheckbox'
+                        />
+                    </div>
+                ))}
             </div>
         </>
-    )
+    );
 }
