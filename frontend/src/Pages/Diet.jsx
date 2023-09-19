@@ -19,7 +19,7 @@ export default function Diet({ loggedIn, setLoggedIn, client }) {
             <div id='meal-page'>
                 
                   
-                    <Tracker client={client} key={key} />
+                <Tracker client={client} key={key} />
                 
                 <CreateMeal client={client} setKey={setKey}/>
             </div>

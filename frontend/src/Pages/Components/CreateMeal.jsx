@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import MealItem from './MealItem';
+import ConsumableSearch from './ConsumableSearch';
+
 import uuid from "react-native-uuid";
 
 export default function CreateMeal({ client, setKey}) {
@@ -57,7 +59,7 @@ export default function CreateMeal({ client, setKey}) {
         <>
             
         <form onSubmit={handleMealCreation} id="meal-form">
-            <p>Add as many items as you want before anything. It will reset when adding an item. I will fix it... sometime...</p>
+            <p>Add as many items as you want before anything. It will reset when adding an item. I'm fixing it.</p>
             {items.map(item => {
                 return (
                     <MealItem key={uuid.v4()} client={client} index={item} consumables={consumables}/>
@@ -70,6 +72,8 @@ export default function CreateMeal({ client, setKey}) {
             </div>
             
             <button className="border positive" type='submit'><h4>Create Meal</h4></button>
+            <ConsumableSearch consumables={consumables}/>
+
 		</form>
         </>
         
