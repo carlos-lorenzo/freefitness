@@ -8,9 +8,11 @@ export default function ConsumableSearch({ consumables, index }) {
     function updateQuery(e) {
         const currentQuery = e.target.value;
         setQuery(currentQuery);
-        setQueryResults([]);
 
         if (!currentQuery) {
+            // Clear selectedConsumable and results when the search query is empty
+            setSelectedConsumable(null);
+            setQueryResults([]);
             return;
         }
 
@@ -23,28 +25,41 @@ export default function ConsumableSearch({ consumables, index }) {
 
     function handleCheckboxChange(consumable) {
         setSelectedConsumable(consumable);
-        setQueryResults([consumable]);
+        setQueryResults([]);
+        setQuery(consumable.name);
     }
 
     return (
-        <>
-            <input type="text" onChange={updateQuery} value={query} placeholder='search...'/>
+        <div>
+            <input
+                type="text"
+                onChange={updateQuery}
+                value={query}
+                placeholder='Search...'
+                className='search-input'
+            />
             <div className='search-results'>
                 {queryResults.map((consumable) => (
                     <div key={`${consumable.id}_${index}`}>
-                        <label htmlFor={consumable.id}>{consumable.name}</label>
-                        <input
-                            type="checkbox"
-                            name={`name_${index}`}
-                            value={consumable.name}
-                            checked={selectedConsumable === consumable}
-                            onChange={() => handleCheckboxChange(consumable)}
-                            id={`${consumable.id}_${index}`}
-                            className='consumableCheckbox'
-                        />
+                        {selectedConsumable !== consumable && (
+                            <>
+                                <label htmlFor={consumable.id} className='consumable-label'>
+                                    {consumable.name}
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    name={`name_${index}`}
+                                    value={consumable.name}
+                                    checked={false}
+                                    onChange={() => handleCheckboxChange(consumable)}
+                                    id={`${consumable.id}_${index}`}
+                                    className='consumable-checkbox'
+                                />
+                            </>
+                        )}
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 }
