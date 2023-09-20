@@ -4,6 +4,7 @@ export default function ConsumableSearch({ consumables, index }) {
     const [query, setQuery] = useState("");
     const [queryResults, setQueryResults] = useState([]);
     const [selectedConsumable, setSelectedConsumable] = useState(null);
+    const [selectedForSubmit, setSelectedForSubmit] = useState(null);
 
     function updateQuery(e) {
         const currentQuery = e.target.value;
@@ -24,13 +25,14 @@ export default function ConsumableSearch({ consumables, index }) {
     }
 
     function handleCheckboxChange(consumable) {
+        setSelectedForSubmit(consumable);
         setSelectedConsumable(consumable);
         setQueryResults([]);
         setQuery(consumable.name);
     }
 
     return (
-        <div>
+        <>
             <input
                 type="text"
                 onChange={updateQuery}
@@ -40,10 +42,10 @@ export default function ConsumableSearch({ consumables, index }) {
             />
             <div className='search-results'>
                 {queryResults.map((consumable) => (
-                    <div key={`${consumable.id}_${index}`}>
+                    <div key={`${consumable.id}_${index}`} className='checkbox-container border'>
                         {selectedConsumable !== consumable && (
                             <>
-                                <label htmlFor={consumable.id} className='consumable-label'>
+                                <label htmlFor={`${consumable.id}_${index}`} className='consumable-label'>
                                     {consumable.name}
                                 </label>
                                 <input
@@ -60,6 +62,9 @@ export default function ConsumableSearch({ consumables, index }) {
                     </div>
                 ))}
             </div>
-        </div>
+            {selectedForSubmit && (
+                <input type="hidden" name={`name_${index}`} value={selectedForSubmit.name} />
+            )}
+        </>
     );
 }
