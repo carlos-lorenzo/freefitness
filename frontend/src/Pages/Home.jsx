@@ -16,10 +16,10 @@ export default function Home() {
             <span id='home-content'>
                 <h1 id='home-title'>BECOME BETTER.</h1>
                 <h2 id='home-description'>
-                    A <span style={primary}>GODLIKE</span> physique can <span style={accent}>ONLY</span> be achieved through a rigorous diet. <br />
-                    So start <span style={primary}>CUTTING</span> you <span style={accent}>FAT FUCK</span> and <span style={primary}>BULKING</span> you <span style={accent}>SKINNY BITCH</span>.
+                    An <span style={primary}>AESTHETIC</span> physique can <span style={accent}>ONLY</span> be achieved through a rigorous diet. <br />
+                    So start <span style={primary}>tracking</span> your macros and live a <span style={primary}>healthier</span> lifestyle.
                 </h2>
-                <button onClick={executeOrder66} id="villain-arc" className='border positive'><h3>START VILLAIN ARC</h3></button>
+                <button onClick={executeOrder66} id="villain-arc" className='border positive'><h3>START LIVING</h3></button>
             </span>
         </div>
     );
