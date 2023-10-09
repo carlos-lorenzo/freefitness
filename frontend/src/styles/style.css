@@ -70,7 +70,7 @@ label {
 #home {
     display: grid;
     height: 80vh;
-    margin-bottom: 10vh;
+    margin-bottom: 250px;
    
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
