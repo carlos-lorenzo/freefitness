@@ -7,8 +7,8 @@ export default function Home() {
     const primary = { color: '#0a6161' };
     let navigate = useNavigate();
 
-    function executeOrder66 () {
-        navigate("/challenge");
+    function navigateToRegister () {
+        navigate("/register");
     }
 
     return (
@@ -19,7 +19,7 @@ export default function Home() {
                     An <span style={primary}>AESTHETIC</span> physique can <span style={accent}>ONLY</span> be achieved through a rigorous diet. <br />
                     So start <span style={primary}>TRACKING</span> your macros and live a <span style={primary}>HEALTHIER</span> lifestyle.
                 </h2>
-                <button onClick={executeOrder66} id="villain-arc" className='border positive'><h3>START LIVING</h3></button>
+                <button onClick={navigateToRegister} id="villain-arc" className='border positive'><h3>START LIVING</h3></button>
             </span>
         </div>
     );

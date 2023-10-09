@@ -20,7 +20,7 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 const client = axios.create({
-	baseURL: "http://192.168.1.53:8000"
+	baseURL: "http://192.168.1.54:8000"
 })
 
 
@@ -36,8 +36,6 @@ function App() {
 				<Route path='/login' element={<LogIn setLoggedIn={setLoggedIn} client={client}/>} />
 				<Route path='/register' element={<Register setLoggedIn={setLoggedIn} client={client}/>} />
 				<Route path='/diet' element={<Diet loggedIn={loggedIn} client={client}/>} />
-                <Route path='/challenge' element={<Challenge/>} />
-
 			</Routes>
             <Footer/>
 		</>
