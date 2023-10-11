@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ConsumableSearch from './ConsumableSearch';
 
-export default function MealItem({ client, index, consumables, amount, consumable, mealItems, setMealItems }) {
+export default function MealItem({ client, index, consumables, amount, currentConsumable, mealItems, setMealItems }) {
     const [currentAmount, setCurrentAmount] = useState(amount);
 
     
@@ -9,7 +9,7 @@ export default function MealItem({ client, index, consumables, amount, consumabl
   useEffect(() => {
     const timeoutId = setTimeout(() => {
         if (currentAmount !== mealItems[index]["amount"]){
-            setMealAmount();
+            setMealItemsAmount();
         } 
         
         
@@ -18,12 +18,12 @@ export default function MealItem({ client, index, consumables, amount, consumabl
   }, [currentAmount]);
 
 
-    function setMealAmount() {
+    function setMealItemsAmount() {
         let newMealItems = [...mealItems];
         newMealItems[index] = {
             index: index,
             amount: currentAmount,
-            consumable: consumable,
+            consumable: currentConsumable,
         };
 
         setMealItems(newMealItems);
@@ -45,7 +45,12 @@ export default function MealItem({ client, index, consumables, amount, consumabl
                 onChange={handleAmountChange}
             />
 
-            <ConsumableSearch consumables={consumables} index={index} consumable={consumable} />
+            <ConsumableSearch 
+            consumables={consumables} 
+            index={index} 
+            currentConsumable={currentConsumable}
+            mealItems={mealItems}
+            setMealItems={setMealItems}/>
         </div>
     );
 }

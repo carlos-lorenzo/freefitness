@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-export default function ConsumableSearch({ consumables, index }) {
-    const [query, setQuery] = useState("");
+export default function ConsumableSearch({ consumables, index, currentConsumable, mealItems, setMealItems }) {
+    const [query, setQuery] = useState(currentConsumable);
     const [queryResults, setQueryResults] = useState([]);
     const [selectedConsumable, setSelectedConsumable] = useState(null);
-    const [selectedForSubmit, setSelectedForSubmit] = useState(null);
+    const [selectedForSubmit, setSelectedForSubmit] = useState(currentConsumable);
 
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
-            
-            updateQuery();
+            if (query !== mealItems[index]["consumable"]){
+                updateQuery();
+            }
             
         }, 1000);
         return () => clearTimeout(timeoutId);
@@ -32,11 +33,23 @@ export default function ConsumableSearch({ consumables, index }) {
         setQueryResults(currentQueryResults);
     }
 
+    function setMealItemsConsumable(newConsumable) {
+        let newMealItems = [...mealItems];
+        newMealItems[index] = {
+            index: index,
+            amount: newMealItems[index]["amount"],
+            consumable: newConsumable,
+        };
+
+        setMealItems(newMealItems);
+    }
+
     function handleCheckboxChange(consumable) {
-        setSelectedForSubmit(consumable);
+        setSelectedForSubmit(consumable.name);
         setSelectedConsumable(consumable);
         setQueryResults([]);
         setQuery(consumable.name);
+        //setMealItemsConsumable(consumable.name)
     }
 
     return (
@@ -71,7 +84,7 @@ export default function ConsumableSearch({ consumables, index }) {
                 ))}
             </div>
             {selectedForSubmit && (
-                <input type="hidden" name={`name_${index}`} value={selectedForSubmit.name} />
+                <input type="hidden" name={`name_${index}`} value={selectedForSubmit} />
             )}
         </>
     );

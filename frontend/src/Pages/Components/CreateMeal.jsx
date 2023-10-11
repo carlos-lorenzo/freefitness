@@ -64,9 +64,7 @@ export default function CreateMeal({ client, setKey}) {
         <>
             
         <form onSubmit={handleMealCreation} id="meal-form">
-            <p>Add as many items as you want before anything. It will reset when adding an item. I'm fixing it.</p>
-            {mealItems.map(item => {
-                
+            {mealItems.map(item => {    
                 return (
                     <MealItem 
                     key={uuid.v4()} 
