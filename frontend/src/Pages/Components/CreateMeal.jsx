@@ -1,13 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import MealItem from './MealItem';
-import ConsumableSearch from './ConsumableSearch';
+
 
 import uuid from "react-native-uuid";
 
 export default function CreateMeal({ client, setKey}) {
 
-    const [items, setItems] = useState([0]);
     
     
     const [consumables, setConsumables] = useState([])
@@ -21,6 +20,8 @@ export default function CreateMeal({ client, setKey}) {
             
         })
     }
+
+    const [mealItems, setMealItems] = useState([{index: 0, amount: "", consumable: ""}]);
 
 	function handleMealCreation(e) {
 		e.preventDefault();
@@ -39,17 +40,21 @@ export default function CreateMeal({ client, setKey}) {
 	}
 
     function addItem() {
-        setItems([
-            ...items,
-            items[items.length - 1] + 1
+       
+        setMealItems([
+            ...mealItems,
+            {index: (mealItems[mealItems.length - 1]["index"] + 1), amount: "", consumable: ""}
+            
         ]);
     }
 
     function removeItem() {
-        if (items.length > 1){
-            setItems([
-                ...items.slice(0, -1),
+        if (mealItems.length > 1){
+            setMealItems([
+                ...mealItems.slice(0, -1),
             ]);
+        } else {
+            setMealItems([{index: 0, amount: "", consumable: ""}]);
         }
         
     }
@@ -60,9 +65,18 @@ export default function CreateMeal({ client, setKey}) {
             
         <form onSubmit={handleMealCreation} id="meal-form">
             <p>Add as many items as you want before anything. It will reset when adding an item. I'm fixing it.</p>
-            {items.map(item => {
+            {mealItems.map(item => {
+                
                 return (
-                    <MealItem key={uuid.v4()} client={client} index={item} consumables={consumables}/>
+                    <MealItem 
+                    key={uuid.v4()} 
+                    client={client} 
+                    index={item["index"]} 
+                    consumables={consumables} 
+                    currentConsumable={item["consumable"]}
+                    amount={item["amount"]}
+                    mealItems={mealItems}
+                    setMealItems={setMealItems}/>
                 )
                 })}
 

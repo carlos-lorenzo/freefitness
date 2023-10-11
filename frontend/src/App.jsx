@@ -10,7 +10,6 @@ import Profile from './Pages/Profile';
 import LogIn from './Pages/LogIn';
 import Register from './Pages/Register';
 import Diet from './Pages/Diet';
-import Challenge from './Pages/Challenge';
 
 
 
@@ -20,7 +19,7 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 const client = axios.create({
-	baseURL: "http://192.168.1.54:8000"
+	baseURL: "http://192.168.1.59:8000"
 })
 
 

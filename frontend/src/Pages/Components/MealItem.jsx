@@ -1,18 +1,51 @@
-import React from 'react'
-import { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ConsumableSearch from './ConsumableSearch';
 
-
-export default function MealItem({ client, index, consumables }) {
+export default function MealItem({ client, index, consumables, amount, consumable, mealItems, setMealItems }) {
+    const [currentAmount, setCurrentAmount] = useState(amount);
 
     
-    return (
-		<div className='meal-item'>
-			<input name={`amount_${index}`} type="number" placeholder="grams"/>
-
-			<ConsumableSearch consumables={consumables} index={index}/>
-
-		</div>
+    
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+        if (currentAmount !== mealItems[index]["amount"]){
+            setMealAmount();
+        } 
         
-    )
+        
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [currentAmount]);
+
+
+    function setMealAmount() {
+        let newMealItems = [...mealItems];
+        newMealItems[index] = {
+            index: index,
+            amount: currentAmount,
+            consumable: consumable,
+        };
+
+        setMealItems(newMealItems);
+    }
+
+    function handleAmountChange(e) {
+        setCurrentAmount(e.target.value);
+        
+        
+    };
+
+    return (
+        <div className='meal-item'>
+            <input
+                value={currentAmount}
+                name={`amount_${index}`}
+                type="number"
+                placeholder="grams"
+                onChange={handleAmountChange}
+            />
+
+            <ConsumableSearch consumables={consumables} index={index} consumable={consumable} />
+        </div>
+    );
 }

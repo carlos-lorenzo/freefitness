@@ -6,11 +6,19 @@ export default function ConsumableSearch({ consumables, index }) {
     const [selectedConsumable, setSelectedConsumable] = useState(null);
     const [selectedForSubmit, setSelectedForSubmit] = useState(null);
 
-    function updateQuery(e) {
-        const currentQuery = e.target.value;
-        setQuery(currentQuery);
 
-        if (!currentQuery) {
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            
+            updateQuery();
+            
+        }, 1000);
+        return () => clearTimeout(timeoutId);
+      }, [query]);
+
+    function updateQuery() {
+
+        if (!query) {
             // Clear selectedConsumable and results when the search query is empty
             setSelectedConsumable(null);
             setQueryResults([]);
@@ -18,7 +26,7 @@ export default function ConsumableSearch({ consumables, index }) {
         }
 
         const currentQueryResults = consumables.filter((consumable) =>
-            consumable.name.toLowerCase().includes(currentQuery.toLowerCase())
+            consumable.name.toLowerCase().includes(query.toLowerCase())
         );
 
         setQueryResults(currentQueryResults);
@@ -35,7 +43,7 @@ export default function ConsumableSearch({ consumables, index }) {
         <>
             <input
                 type="text"
-                onChange={updateQuery}
+                onChange={e => setQuery(e.target.value)}
                 value={query}
                 placeholder='Search...'
                 className='search-input'
