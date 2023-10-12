@@ -85,7 +85,7 @@ h1#home-title {
 
 #footer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     background-color: var(--text);
     width: 100vw;
     height: 10vh;
@@ -109,6 +109,12 @@ h1#home-title {
     
     width: 100vw;
     height: 10vh; 
+}
+
+.nav-link {
+    display: grid;
+    width: 100%;
+    place-items: center;
 }
 
 #navbar-items {

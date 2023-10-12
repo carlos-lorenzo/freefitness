@@ -8,6 +8,7 @@ import MustLogIn from './Components/MustLogIn';
 import SetState from './Components/SetState';
 import SetSex from './Components/SetSex';
 import SetNumeric from './Components/SetNumeric';
+import SetActivity from './Components/SetActivity';
 import Logout from './Components/Logout';
 
 export default function Profile({ loggedIn , setLoggedIn, client }) {
@@ -37,6 +38,7 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
                     <SetNumeric client={client} property={"weight"} unit={"kg"}/>
                     <SetSex client={client}/>
                     <SetState client={client}/>
+                    <SetActivity client={client}/>
                     <Logout client={client} setLoggedIn={setLoggedIn}/>
                 </div>
 		)

@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faUser, faSquarePlus, faAppleWhole } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faAppleWhole } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar({ loggedIn, client}) {
     return (
         <>
             <div className="navbar">
+                
                 <div id="navbar-items">
                 <Link to="/" className="nav-link">
-                    <FontAwesomeIcon icon={faHouse} style={{color: "white"}} size="2xl"/>
+                    <img src = "/FreeFitnessLogo-min.png" alt="Logo" width={"120px"} height={"60px"}/>
                 </Link>
                 {loggedIn && (
                         <Link
@@ -19,17 +20,21 @@ function Navbar({ loggedIn, client}) {
                                     client: client
                                 }
                             }}
+                            className="nav-link"
                         >
                             <FontAwesomeIcon icon={faAppleWhole} style={{ color: "white" }} size="2xl" />
                         </Link>
                     )}
-                <Link to ={{
+                <Link 
+                to ={{
                     pathname: "profile/",
                     state: {
                         loggedIn: loggedIn,
                         client: client
                     }
-                }}>
+                }}
+                className="nav-link"
+                >
                     <FontAwesomeIcon icon={faUser} style={{color: "white"}} size="2xl"/>
                 </Link>   
                 </div>

@@ -12,6 +12,7 @@ urlpatterns = [
 	path('get_meals', views.GetUserMeals.as_view(), name='getmeals'),
 	path('get_consumables', views.GetConsumables.as_view(), name='getconsumables'),
 	path('track', views.Track.as_view(), name='track'),
+    path('update_activity', views.UpdateUserActivity.as_view(), name='updateactivity'),
 	path('update_state', views.UpdateUserState.as_view(), name='updatestate'),
     path('update_sex', views.UpdateUserSex.as_view(), name='updatesex'),
 	path('update_height', views.UpdateUserHeight.as_view(), name='updateheight'),

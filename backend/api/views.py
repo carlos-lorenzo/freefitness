@@ -77,8 +77,7 @@ class CreateMeal(APIView):
   
 		meal_items = dict(request.POST.items())
 
-		print(meal_items)
-
+		
 		for i in range(len(meal_items) // 2):
 			consumable_name = meal_items[f"name_{i}"]
 			amount = meal_items[f"amount_{i}"]
@@ -162,6 +161,26 @@ class UpdateUserState(APIView):
 			return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
 		else:
 			return Response({"message": "Invalid value in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UpdateUserActivity(APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+	authentication_classes = (SessionAuthentication,)
+	
+	def post(self, request):
+		user = request.user
+		# Get the state from the request data
+		new_activity = request.data.get("activity")
+		
+		if new_activity is not None:
+			# Update the user's state
+			user.activity = new_activity
+			user.save()
+			
+			return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
+		else:
+			return Response({"message": "Invalid value in the request"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UpdateUserSex(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
