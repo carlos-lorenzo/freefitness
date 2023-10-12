@@ -1,20 +1,46 @@
 import React from 'react'
+import { toast } from 'react-toastify';
 
 export default function SetState({ client }) {
     function handleStateUpdate(e) {
 		e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-
-		client.post(
-			"/api/update_state",
-            formData,
-			{withCredentials: true},
-            
-            
-		).then(function(response){
-			console.log(response)
-		})
+        let newState = Object.fromEntries(formData)["state"];
+        
+        if (newState >= 1 && newState <= 3) {
+            client.post(
+                "/api/update_state",
+                formData,
+                {withCredentials: true},
+                
+                
+            ).then(function(response){
+                
+                toast.success(`State updated`, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+            })
+        } else {
+            toast.warning(`You must select a state`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        }
+		
 	}
 
     return (

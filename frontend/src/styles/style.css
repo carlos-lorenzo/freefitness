@@ -52,7 +52,7 @@ select {
 }
 
 
-button{
+button:not(.Toastify__close-button){
     color: var(--background);
     background-color: var(--text);
     font-family: inherit;

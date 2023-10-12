@@ -1,4 +1,6 @@
 import React from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SetNumeric({ client, property, unit }) {
 
@@ -14,7 +16,16 @@ export default function SetNumeric({ client, property, unit }) {
             
             
 		).then(function(response){
-			console.log(response)
+			toast.success(`${property.charAt(0).toUpperCase() + property.slice(1)} updated`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
 		})
 	}
 

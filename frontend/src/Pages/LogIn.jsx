@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LogIn({ setLoggedIn, client }) {
     const [email, setEmail] = useState();
@@ -24,11 +26,34 @@ export default function LogIn({ setLoggedIn, client }) {
             setLoggedIn(true);
             navigate('/diet');
 
+        }).catch(function(error) {
+            toast.error("Invalid login credentials", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         });
     }
 
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className='centred full-width full-height' id='login-container'>
                 
                 <form onSubmit={handleLogIn} id='login-form'>

@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 import MustLogIn from './Components/MustLogIn';
 import SetState from './Components/SetState';
@@ -18,6 +20,18 @@ export default function Profile({ loggedIn , setLoggedIn, client }) {
 	} else {
 		return (
                 <div id='profile-page' className='full-height full-width'>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                    />
                     <h1>Profile</h1>
 					<SetNumeric client={client} property={"height"} unit={"cm"}/>
                     <SetNumeric client={client} property={"weight"} unit={"kg"}/>

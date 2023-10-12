@@ -1,4 +1,5 @@
 import React from 'react'
+import { toast } from 'react-toastify';
 
 export default function SetSex({ client }) {
     function handleSexUpdate(e) {
@@ -13,7 +14,16 @@ export default function SetSex({ client }) {
             
             
 		).then(function(response){
-			console.log(response)
+			toast.success(`Sex updated`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
 		})
 	}
 

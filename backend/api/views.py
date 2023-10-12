@@ -2,6 +2,7 @@ import datetime
 
 from django.shortcuts import render
 from django.contrib.auth import login, logout
+from django.core.exceptions import ValidationError
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -39,10 +40,12 @@ class UserLogin(APIView):
 		assert validate_email(data)
 		assert validate_password(data)
 		serialiser = UserLoginSerialiser(data=data)
+		
 		if serialiser.is_valid(raise_exception=True):
 			user = serialiser.check_user(data)
 			login(request, user)
 			return Response(serialiser.data, status=status.HTTP_200_OK)
+	
 
 
 class UserLogout(APIView):
