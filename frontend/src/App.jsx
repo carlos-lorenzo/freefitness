@@ -19,7 +19,7 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
 const client = axios.create({
-	baseURL: "http://192.168.1.59:8000"
+	baseURL: "http://localhost:8000"
 })
 
 
