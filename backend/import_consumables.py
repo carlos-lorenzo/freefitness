@@ -12,6 +12,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "freefitness.settings")
 django.setup()
 
 def import_consumables_from_csv():
+    i = 0
     # Get the absolute path to the directory containing this script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     # Construct the absolute path to the CSV file
@@ -20,6 +21,10 @@ def import_consumables_from_csv():
     with open(csv_file_path, 'r') as file:
         reader = csv.DictReader(file)
         for row in tqdm(reader):
+            
+            if i == 25:
+                break
+            
             macros = {
                 "name": row['Name'],
                 "calories": row['Calories'],
@@ -48,6 +53,9 @@ def import_consumables_from_csv():
                 protein=macros["protein"]
             )
             consumable.save()  # Save the object to the database
-
+            
+            i += 1
+            
+            
 # Call the function to import data from the CSV file
 #import_consumables_from_csv()

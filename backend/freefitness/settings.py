@@ -13,8 +13,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import socket
 
+import os
+from dotenv import load_dotenv
+import dj_database_url
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +36,7 @@ DEBUG = True
 ip = socket.gethostbyname(socket.gethostname())
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [f"http://{ip}", "http://localhost", "http://172.17.192.1"]
+CSRF_TRUSTED_ORIGINS = [f"http://{ip}", "http://localhost", "http://172.17.192.1", "https://*.vercel.app"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
@@ -109,11 +116,19 @@ WSGI_APPLICATION = "freefitness.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+
+
+"""DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
+}"""
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DB_URL"), conn_max_age=600
+    )
 }
 
 
