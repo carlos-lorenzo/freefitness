@@ -22,29 +22,31 @@ def index(request):
 	return render(request, "index.html", {})
 
 class GetCSRFToken(APIView):
-    permission_classes = (permissions.AllowAny,)
-    
-    def get(self, request: HttpRequest) -> Response:
-        """
-        API index endpoint, check whether it is online.
+	permission_classes = (permissions.AllowAny,)
+	
+	def get(self, request: HttpRequest) -> Response:
+		"""
+		API index endpoint, check whether it is online.
 
-        Args:
-            request (HttpRequest): Nothing.
+		Args:
+			request (HttpRequest): Nothing.
 
-        Returns:
-            Response: Response containing JSON with key "status".
-        """
-        csrf_token = get_token(request)
-        return JsonResponse({'csrfToken': csrf_token})
+		Returns:
+			Response: Response containing JSON with key "status".
+		"""
+		csrf_token = get_token(request)
+		return JsonResponse({'csrfToken': csrf_token})
 
 
 class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
 	def post(self, request):
-		clean_data = custom_validation(request.data)
-		serialiser = UserRegisterSerialiser(data=clean_data)
+     
+	
+		serialiser = UserRegisterSerialiser(data=request.data)
+  
 		if serialiser.is_valid(raise_exception=True):
-			user = serialiser.create(clean_data)
+			user = serialiser.create(request.data)
 			if user:
 				user_tracker = Tracker.objects.create(user=user)
 				user_tracker.save()
@@ -58,8 +60,7 @@ class UserLogin(APIView):
  
 	def post(self, request):
 		data = request.data
-		assert validate_email(data)
-		assert validate_password(data)
+	
 		serialiser = UserLoginSerialiser(data=data)
 		
 		if serialiser.is_valid(raise_exception=True):

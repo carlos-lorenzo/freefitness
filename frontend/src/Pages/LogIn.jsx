@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function LogIn({ setLoggedIn, client }) {
     const [email, setEmail] = useState();
-	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
     
     
@@ -55,15 +54,7 @@ export default function LogIn({ setLoggedIn, client }) {
                     value={email}
                     onChange={(e) => {setEmail(e.target.value)}}/>
 
-                    <input 
-                    className='border'
-                    type="text" 
-                    id="username"
-                    placeholder="username"
-                    autoComplete="off"
-                    value={username}
-                    onChange={(e) => {setUsername(e.target.value)}}/>
-
+                   
                     <input 
                     className='border'
                     type="password" 

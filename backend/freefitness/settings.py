@@ -110,7 +110,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "freefitness.wsgi.application"
+WSGI_APPLICATION = "freefitness.wsgi.app"
 
 
 # Database
