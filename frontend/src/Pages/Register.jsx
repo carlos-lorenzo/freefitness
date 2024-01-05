@@ -48,18 +48,7 @@ export default function Register({ setLoggedIn, client }) {
 
   return (
     <>
-        <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-        />
+        
         <div className='centred full-width full-height' id='register-container'>
             <form onSubmit={submitRegistration} id='register-form'>
                 <h2>Register</h2> 

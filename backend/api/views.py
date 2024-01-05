@@ -1,3 +1,7 @@
+from django.http import HttpRequest
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
+
 import datetime
 
 from django.shortcuts import render
@@ -16,6 +20,23 @@ from tracker.serializers import MealSerialiser, ConsumableSerialiser, TrackerSer
 # Create your views here.
 def index(request):
 	return render(request, "index.html", {})
+
+class GetCSRFToken(APIView):
+    permission_classes = (permissions.AllowAny,)
+    
+    def get(self, request: HttpRequest) -> Response:
+        """
+        API index endpoint, check whether it is online.
+
+        Args:
+            request (HttpRequest): Nothing.
+
+        Returns:
+            Response: Response containing JSON with key "status".
+        """
+        csrf_token = get_token(request)
+        return JsonResponse({'csrfToken': csrf_token})
+
 
 class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
