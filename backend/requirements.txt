@@ -4,3 +4,5 @@ django-cors-headers==3.14.0
 asgiref==3.7.2
 psycopg2-binary==2.9.9
 sqlparse==0.4.3
+python-dotenv==1.0.0
+dj-database-url==2.1.0
