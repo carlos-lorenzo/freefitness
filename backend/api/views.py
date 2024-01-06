@@ -42,7 +42,7 @@ class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
  
 	def post(self, request):
-     
+	 
 	
 		serialiser = UserRegisterSerialiser(data=request.data)
   
@@ -61,7 +61,7 @@ class UserLogin(APIView):
  
 	def post(self, request):
 		data = request.data
-	
+		print(data)
 		serialiser = UserLoginSerialiser(data=data)
 		
 		if serialiser.is_valid(raise_exception=True):

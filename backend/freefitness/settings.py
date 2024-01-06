@@ -72,8 +72,6 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-SESSION_COOKIE_DOMAIN = None
-CSRF_COOKIE_DOMAIN = None
 
 
 # Application definition
