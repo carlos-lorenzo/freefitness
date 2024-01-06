@@ -44,13 +44,11 @@ class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
  
 	def post(self, request):
-		print(request.data)
-		logging.info(request.data)
 		
-		serialiser = UserRegisterSerialiser(data=request.data)
+		serialiser = UserRegisterSerialiser(data=json.loads(request.data["_content"]))
   
 		if serialiser.is_valid(raise_exception=True):
-			user = serialiser.create(request.data)
+			user = serialiser.create(json.loads(request.data["_content"]))
 			if user:
 				user_tracker = Tracker.objects.create(user=user)
 				user_tracker.save()
@@ -183,7 +181,7 @@ class UpdateUserState(APIView):
 	def post(self, request):
 		user = request.user
 		# Get the state from the request data
-		new_state = request.data.get("state")
+		new_state = json.loads(request.data["_content"]).get("state")
 		
 		if new_state is not None:
 			# Update the user's state
@@ -202,7 +200,7 @@ class UpdateUserActivity(APIView):
 	def post(self, request):
 		user = request.user
 		# Get the state from the request data
-		new_activity = request.data.get("activity")
+		new_activity = json.loads(request.data["_content"]).get("activity")
 		
 		if new_activity is not None:
 			# Update the user's state
@@ -221,7 +219,7 @@ class UpdateUserSex(APIView):
 	def post(self, request):
 		user = request.user
 		# Get the sex from the request data 
-		sex = request.data.get("sex")
+		sex = json.loads(request.data["_content"]).get("sex")
 		
 		if sex is not None:
 			# Update the user's sex
@@ -241,7 +239,7 @@ class UpdateUserHeight(APIView):
 		user = request.user
 		
 		# Get the height from the request data 
-		new_height = request.data.get("height")
+		new_height = json.loads(request.data["_content"]).get("height")
 		
 		if new_height is not None:
 			# Update the user's height
@@ -262,7 +260,7 @@ class UpdateUserWeight(APIView):
 		
 		# Get the weight from the request data 
   
-		new_weight = request.data.get("weight")
+		new_weight = json.loads(request.data["_content"]).get("weight")
 		
 		if new_weight is not None:
 			# Update the user's weight
