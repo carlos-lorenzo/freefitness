@@ -59,29 +59,24 @@ class UserRegister(APIView):
 
 
 class UserLogin(APIView):
-	permission_classes = (permissions.AllowAny,)
-	authentication_classes = (SessionAuthentication,)
- 
-	def post(self, request):
-		raw_content = request.body.decode('utf-8')
-		data_dict = json.loads(raw_content)
-  
- 		
-  
-		data = request.data
-		print(data)
-		logging.info(request.data)
-  
-  
-		return Response(data_dict, status=status.HTTP_200_OK)
+    permission_classes = (permissions.AllowAny,)
+    authentication_classes = (SessionAuthentication,)
 
-"""
-		serialiser = UserLoginSerialiser(data=data)
-		
-		if serialiser.is_valid(raise_exception=True):
-			user = serialiser.check_user(data)
-			login(request, user)
-			return Response(serialiser.data, status=status.HTTP_200_OK)"""
+    def post(self, request):
+        serializer = UserLoginSerialiser(data=request.data)
+
+        if serializer.is_valid():
+            validated_data = serializer.validated_data
+            # Perform authentication/login logic with validated_data
+            
+            # Example: Assuming you have a 'check_user' method in your serializer
+            user = serializer.check_user(validated_data)
+            
+            # Perform further authentication/logic, e.g., using Django's login method
+            
+            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 	
 
 
