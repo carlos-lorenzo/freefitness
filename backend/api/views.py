@@ -4,6 +4,7 @@ from django.middleware.csrf import get_token
 
 import datetime
 import logging
+import json
 
 from django.shortcuts import render
 from django.contrib.auth import login, logout
@@ -62,12 +63,17 @@ class UserLogin(APIView):
 	authentication_classes = (SessionAuthentication,)
  
 	def post(self, request):
+		raw_content = request.body.decode('utf-8')
+		data_dict = json.loads(raw_content)
+  
+ 		
+  
 		data = request.data
 		print(data)
 		logging.info(request.data)
   
   
-		return Response(request.data, status=status.HTTP_200_OK)
+		return Response(data_dict, status=status.HTTP_200_OK)
 
 """
 		serialiser = UserLoginSerialiser(data=data)
