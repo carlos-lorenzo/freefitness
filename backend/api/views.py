@@ -71,7 +71,7 @@ class UserLogin(APIView):
             
             # Example: Assuming you have a 'check_user' method in your serializer
             user = serializer.check_user(validated_data)
-            
+            login(request, user)
             # Perform further authentication/logic, e.g., using Django's login method
             
             return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
