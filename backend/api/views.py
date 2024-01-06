@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.middleware.csrf import get_token
 
 import datetime
+import logging
 
 from django.shortcuts import render
 from django.contrib.auth import login, logout
@@ -42,7 +43,8 @@ class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
  
 	def post(self, request):
-	 
+		print(request.data)
+		logging.info(request.data)
 	
 		serialiser = UserRegisterSerialiser(data=request.data)
   
@@ -62,6 +64,7 @@ class UserLogin(APIView):
 	def post(self, request):
 		data = request.data
 		print(data)
+		logging.info(request.data)
 		serialiser = UserLoginSerialiser(data=data)
 		
 		if serialiser.is_valid(raise_exception=True):
