@@ -35,7 +35,8 @@ DEBUG = True
 
 IP = socket.gethostbyname(socket.gethostname())
 PORT = 3000
-CSRF_TRUSTED_ORIGINS = [f"http://{IP}", "http://localhost", f"http://*.{IP}:{PORT}/", f"http://localhost:{PORT}", "http://192.168.88.201:3000/", "http://*.192.168.1.64:3000/", "http://*.http://172.16.35.147:3000/"]
+
+CSRF_TRUSTED_ORIGINS = [f"http://{IP}", "http://localhost", f"http://*.{IP}:{PORT}/", f"http://localhost:{PORT}", "https://*.vercel.app/", "https://freefitness.vercel.app/", "https://*.freefitness.vercel.app/"]
 
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
