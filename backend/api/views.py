@@ -3,8 +3,6 @@ from django.http import JsonResponse
 from django.middleware.csrf import get_token
 
 import datetime
-import logging
-import json
 
 from django.shortcuts import render
 from django.contrib.auth import login, logout
@@ -44,11 +42,12 @@ class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
  
 	def post(self, request):
-		
-		serialiser = UserRegisterSerialiser(data=json.loads(request.data.get("_content", request.data)))
+     
+	
+		serialiser = UserRegisterSerialiser(data=request.data)
   
 		if serialiser.is_valid(raise_exception=True):
-			user = serialiser.create(json.loads(request.data.get("_content", request.data)))
+			user = serialiser.create(request.data)
 			if user:
 				user_tracker = Tracker.objects.create(user=user)
 				user_tracker.save()
@@ -57,24 +56,18 @@ class UserRegister(APIView):
 
 
 class UserLogin(APIView):
-    permission_classes = (permissions.AllowAny,)
-    authentication_classes = (SessionAuthentication,)
-
-    def post(self, request):
-        serializer = UserLoginSerialiser(data=json.loads(request.data.get("_content", request.data)))
-
-        if serializer.is_valid():
-            validated_data = serializer.validated_data
-            # Perform authentication/login logic with validated_data
-            
-            # Example: Assuming you have a 'check_user' method in your serializer
-            user = serializer.check_user(validated_data)
-            login(request, user)
-            # Perform further authentication/logic, e.g., using Django's login method
-            
-            return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
-        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	permission_classes = (permissions.AllowAny,)
+	authentication_classes = (SessionAuthentication,)
+ 
+	def post(self, request):
+		data = request.data
+	
+		serialiser = UserLoginSerialiser(data=data)
+		
+		if serialiser.is_valid(raise_exception=True):
+			user = serialiser.check_user(data)
+			login(request, user)
+			return Response(serialiser.data, status=status.HTTP_200_OK)
 	
 
 
@@ -181,7 +174,7 @@ class UpdateUserState(APIView):
 	def post(self, request):
 		user = request.user
 		# Get the state from the request data
-		new_state = json.loads(request.data.get("_content", request.data)).get("state")
+		new_state = request.data.get("state")
 		
 		if new_state is not None:
 			# Update the user's state
@@ -200,7 +193,7 @@ class UpdateUserActivity(APIView):
 	def post(self, request):
 		user = request.user
 		# Get the state from the request data
-		new_activity = json.loads(request.data.get("_content", request.data)).get("activity")
+		new_activity = request.data.get("activity")
 		
 		if new_activity is not None:
 			# Update the user's state
@@ -219,7 +212,7 @@ class UpdateUserSex(APIView):
 	def post(self, request):
 		user = request.user
 		# Get the sex from the request data 
-		sex = json.loads(request.data.get("_content", request.data)).get("sex")
+		sex = request.data.get("sex")
 		
 		if sex is not None:
 			# Update the user's sex
@@ -239,7 +232,7 @@ class UpdateUserHeight(APIView):
 		user = request.user
 		
 		# Get the height from the request data 
-		new_height = json.loads(request.data.get("_content", request.data)).get("height")
+		new_height = request.data.get("height")
 		
 		if new_height is not None:
 			# Update the user's height
@@ -260,7 +253,7 @@ class UpdateUserWeight(APIView):
 		
 		# Get the weight from the request data 
   
-		new_weight = json.loads(request.data.get("_content", request.data)).get("weight")
+		new_weight = request.data.get("weight")
 		
 		if new_weight is not None:
 			# Update the user's weight
