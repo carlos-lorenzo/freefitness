@@ -63,7 +63,7 @@ class UserLogin(APIView):
     authentication_classes = (SessionAuthentication,)
 
     def post(self, request):
-        serializer = UserLoginSerialiser(data=request.data)
+        serializer = UserLoginSerialiser(data=json.loads(request.data["_content"]))
 
         if serializer.is_valid():
             validated_data = serializer.validated_data
