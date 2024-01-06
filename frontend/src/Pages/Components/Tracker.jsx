@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 
+
 export default function Tracker({ client, key }) {
     const [macros, setMacros] = useState({});
     const [loading, setLoading] = useState(true);
+
+
 
     useEffect(() => {
         // Make the Axios request when the component is mounted

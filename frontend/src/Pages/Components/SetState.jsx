@@ -1,7 +1,25 @@
 import React from 'react'
 import { toast } from 'react-toastify';
+import { useState, useEffect } from 'react';
+
 
 export default function SetState({ client }) {
+
+    const [csrfToken, setCsrfToken] = useState('');
+
+    useEffect(() => {
+        // Fetch the CSRF token on component mount
+        client.get('/api/get_csrf_token')
+            .then(response => {
+                setCsrfToken(response.data.csrfToken);
+            })
+            .catch(error => {
+                console.error('Error fetching CSRF token:', error);
+            });
+    }, []);
+
+
+
     function handleStateUpdate(e) {
 		e.preventDefault();
         const form = e.target;
@@ -12,8 +30,7 @@ export default function SetState({ client }) {
             client.post(
                 "/api/update_state",
                 formData,
-                {withCredentials: true},
-                
+                { headers: { 'X-CSRFToken': csrfToken } },
                 
             ).then(function(response){
                 

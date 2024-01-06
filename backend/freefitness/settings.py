@@ -33,12 +33,22 @@ SECRET_KEY = "django-insecure--#^$7p0xp7c&$g0hhc78wy!_qyi2bdn51ch-6xnfkyq_q09ix=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ip = socket.gethostbyname(socket.gethostname())
+IP = socket.gethostbyname(socket.gethostname())
+PORT = 3000
+CSRF_TRUSTED_ORIGINS = [f"http://{IP}", "http://localhost", f"http://*.{IP}:{PORT}/", f"http://localhost:{PORT}", "http://192.168.88.201:3000/", "http://*.192.168.1.64:3000/", "http://*.http://172.16.35.147:3000/"]
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [f"http://{ip}", "http://localhost", "http://172.17.192.1", "https://*.vercel.app"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+
+
+SESSION_COOKIE_DOMAIN = None
+CSRF_COOKIE_DOMAIN = None
+
+
+
+
 
 CORS_ALLOW_METHODS = [
 'DELETE',
@@ -118,19 +128,22 @@ WSGI_APPLICATION = "freefitness.wsgi.app"
 
 
 
-"""DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+
+if os.environ.get("VERCEL_ENV") == "production":
+    CSRF_COOKIE_SECURE = True 
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DB_URL"), conn_max_age=600
+        )
     }
-}"""
-
-DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("DB_URL"), conn_max_age=600
-    )
-}
-
+elif os.environ.get("VERCEL_ENV") == "development":
+    CSRF_COOKIE_SECURE = False 
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 ## User model
 AUTH_USER_MODEL = 'users.AppUser'

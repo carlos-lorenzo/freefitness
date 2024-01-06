@@ -14,13 +14,15 @@ import Diet from './Pages/Diet';
 
 import { ToastContainer } from 'react-toastify';
 
-axios.defaults.xsrfCookieName = "csrftoken";
-axios.defaults.xsrfHeaderName = "X-CSRFToken";
+
+// Axios settings for authentication
+axios.defaults.xsrfCookieName = 'X-CSRFToken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
 const client = axios.create({
-	baseURL: "https://freefitness-api.vercel.app/"
-})
+    baseURL: `http://${window.location.hostname}:8000`, // Constructing the baseURL dynamically
+});
 
 // Fetch the CSRF token
 client.get('/api/get_csrf_token')
@@ -29,6 +31,7 @@ client.get('/api/get_csrf_token')
 }) .catch(error => {
     console.error('Error fetching CSRF token:', error);
 });
+
 
 
 function App() {

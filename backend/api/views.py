@@ -40,6 +40,7 @@ class GetCSRFToken(APIView):
 
 class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
+ 
 	def post(self, request):
      
 	

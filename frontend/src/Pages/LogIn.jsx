@@ -17,12 +17,15 @@ export default function LogIn({ setLoggedIn, client }) {
         e.preventDefault();
         client.post(
             "/api/login",
+           
             {
                 email: email,
                 password: password
             }
         ).then(function(res) {
+            
             setLoggedIn(true);
+            
             navigate('/diet');
 
         }).catch(function(error) {

@@ -2,11 +2,22 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import MealItem from './MealItem';
 
-
 import uuid from "react-native-uuid";
 
 export default function CreateMeal({ client, setKey}) {
 
+    const [csrfToken, setCsrfToken] = useState('');
+
+    useEffect(() => {
+        // Fetch the CSRF token on component mount
+        client.get('/api/get_csrf_token')
+            .then(response => {
+                setCsrfToken(response.data.csrfToken);
+            })
+            .catch(error => {
+                console.error('Error fetching CSRF token:', error);
+            });
+    }, []);
     
     
     const [consumables, setConsumables] = useState([])
@@ -14,7 +25,7 @@ export default function CreateMeal({ client, setKey}) {
     if (consumables.length === 0){
         client.get(
             "/api/get_consumables",
-            {withCredentials: true}
+           
         ).then(function(response){
             setConsumables([...consumables, ...response.data]);
             
@@ -31,7 +42,7 @@ export default function CreateMeal({ client, setKey}) {
 		client.post(
 			"/api/create_meal",
             formData,
-			{withCredentials: true},
+            { headers: { 'X-CSRFToken': csrfToken } },
             
             
 		).then(function(response){
