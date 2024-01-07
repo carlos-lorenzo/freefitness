@@ -39,6 +39,7 @@ PORT = 3000
 CSRF_TRUSTED_ORIGINS = [f"http://{IP}", "http://localhost", f"http://*.{IP}:{PORT}/", f"http://localhost:{PORT}", "https://*.vercel.app/", "https://freefitness.vercel.app/", "https://*.freefitness.vercel.app/"]
 
 ALLOWED_HOSTS = ["*"]
+
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
@@ -46,13 +47,12 @@ CORS_ALLOW_CREDENTIALS = True
 
 SESSION_SAVE_EVERY_REQUEST = True
 
-CSRF_COOKIE_SECURE = True 
+
 SESSION_COOKIE_SECURE = True
 
 SESSION_COOKIE_DOMAIN = None
 CSRF_COOKIE_DOMAIN = None
 
-SESSION_COOKIE_SAMESITE = 'Lax'
 
 
 CORS_ALLOW_METHODS = [
@@ -133,7 +133,7 @@ WSGI_APPLICATION = "freefitness.wsgi.app"
 
 
 if os.environ.get("VERCEL_ENV") == "production":
-    
+    CSRF_COOKIE_SECURE = True 
     DATABASES = {
         "default": dj_database_url.config(
             default=os.environ.get("DB_URL"), conn_max_age=600
