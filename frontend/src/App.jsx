@@ -24,25 +24,13 @@ const client = axios.create({
     baseURL: `https://freefitness-api.vercel.app/`, 
 });
 
-// Create a request interceptor to set CSRF token in headers
-client.interceptors.request.use(
-    async (config) => {
-        try {
-            // Fetch the CSRF token
-            const response = await client.get('/api/get_csrf_token');
-            const csrfToken = response.data.csrfToken;
-
-            // Set the CSRF token in the request headers
-            config.headers['X-CSRFToken'] = csrfToken;
-        } catch (error) {
-            console.error('Error fetching CSRF token:', error);
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+// Fetch the CSRF token
+client.get('/api/get_csrf_token')
+.then(response => {
+    client.defaults.headers.common['X-CSRFToken'] = response.data.csrfToken;
+}) .catch(error => {
+    console.error('Error fetching CSRF token:', error);
+});
 
 
 
