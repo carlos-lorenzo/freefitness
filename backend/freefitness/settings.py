@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
+CORS_ALLOW_ALL = True
 
 
 SESSION_SAVE_EVERY_REQUEST = True
@@ -134,13 +135,16 @@ WSGI_APPLICATION = "freefitness.wsgi.app"
 
 if os.environ.get("VERCEL_ENV") == "production":
     CSRF_COOKIE_SECURE = True 
+    SESSION_COOKIE_SECURE = True
     DATABASES = {
         "default": dj_database_url.config(
             default=os.environ.get("DB_URL"), conn_max_age=600
         )
     }
+    
 elif os.environ.get("VERCEL_ENV") == "development":
     CSRF_COOKIE_SECURE = False 
+    SESSION_COOKIE_SECURE = False
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
