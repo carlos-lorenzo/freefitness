@@ -23,7 +23,7 @@ export default function LogIn({ setLoggedIn, client }) {
                 password: password
             }
         ).then(function(res) {
-            
+            console.log(res);
             setLoggedIn(true);
             
             navigate('/diet');
