@@ -10,6 +10,7 @@ export default function Logout({ client, setLoggedIn }) {
 		  	"/api/logout",
 		  	{withCredentials: true}
 		).then(function(response) {
+            client.defaults.headers.common['Authorization'] = ``;
 			setLoggedIn(false);
 			navigate('/');
 		});

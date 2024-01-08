@@ -81,7 +81,7 @@ class UserLogout(APIView):
 
 class UserView(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def get(self, request):
 		serialiser = UserSerialiser(request.user)
@@ -89,7 +89,7 @@ class UserView(APIView):
 
 class CreateMeal(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
 		
@@ -117,7 +117,7 @@ class CreateMeal(APIView):
 	
 class GetUserMeals(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def get(self, request):
 		user = request.user
@@ -128,7 +128,7 @@ class GetUserMeals(APIView):
 		
 class GetConsumables(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def get(self, request):
 		consumbales = Consumable.objects.all()
@@ -139,7 +139,7 @@ class GetConsumables(APIView):
 
 class Track(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def get(self, request):
 		user = request.user
@@ -169,7 +169,7 @@ class Track(APIView):
 	
 class UpdateUserState(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
 		user = request.user
@@ -188,7 +188,7 @@ class UpdateUserState(APIView):
 
 class UpdateUserActivity(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
 		user = request.user
@@ -207,7 +207,7 @@ class UpdateUserActivity(APIView):
 
 class UpdateUserSex(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
 		user = request.user
@@ -226,7 +226,7 @@ class UpdateUserSex(APIView):
 
 class UpdateUserHeight(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
 		user = request.user
@@ -246,7 +246,7 @@ class UpdateUserHeight(APIView):
 
 class UpdateUserWeight(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
-	authentication_classes = (SessionAuthentication,)
+	#authentication_classes = (SessionAuthentication,)
 	
 	def post(self, request):
 		user = request.user

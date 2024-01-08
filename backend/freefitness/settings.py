@@ -88,6 +88,7 @@ INSTALLED_APPS = [
 	"django.contrib.messages",
 	"django.contrib.staticfiles",
 	"rest_framework",
+    "rest_framework.authtoken",
 	"corsheaders",
 	"api",
 	"users",
@@ -156,12 +157,13 @@ elif os.environ.get("VERCEL_ENV") == "development":
 AUTH_USER_MODEL = 'users.AppUser'
 
 REST_FRAMEWORK = {
-	'DEFAULT_PERMISSION_CLASSES': (
-		'rest_framework.permissions.IsAuthenticated',
-	),
-	'DEFAULT_AUTHENTICATION_CLASSES': (
-		'rest_framework.authentication.SessionAuthentication',
-	),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    ),
 }
 
 

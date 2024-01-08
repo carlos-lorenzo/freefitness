@@ -16,14 +16,13 @@ export default function LogIn({ setLoggedIn, client }) {
     function handleLogIn(e) {
         e.preventDefault();
         client.post(
-            "/api/login",
-           
+            "/api/api-token-auth",
             {
-                email: email,
+                username: email,
                 password: password
             }
         ).then(function(res) {
-            console.log(res);
+            client.defaults.headers.common['Authorization'] = `Token ${response.data.token}`;
             setLoggedIn(true);
             
             navigate('/diet');
