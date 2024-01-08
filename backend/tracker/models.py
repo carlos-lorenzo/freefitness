@@ -75,7 +75,7 @@ class Meal(models.Model):
         return f"{self.user}' meal at {self.consumed_at}"
 
 class Consumable(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=500)
     calories = models.FloatField(default=0)
     fat = models.FloatField(default=0)
     carbs = models.FloatField(default=0)

@@ -28,8 +28,34 @@ export default function Register({ setLoggedIn, client }) {
                 email: email,
                 password: password
             }
-            ).then(function(res) {
-                setLoggedIn(true);
+            ).then(function(response) {
+
+                client.post(
+                    "/api/api-token-auth",
+                    {
+                        username: email,
+                        password: password
+                    }
+                ).then(function(response) {
+                    client.defaults.headers.common['Authorization'] = `Token ${response.data.token}`;
+                    setLoggedIn(true);
+                    
+                    navigate('/diet');
+        
+                }).catch(function(error) {
+                    console.log(error)
+                    toast.error("Something went really wrong...", {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                });
+                
                 navigate('/profile');
             });
         }).catch(function(error) {
