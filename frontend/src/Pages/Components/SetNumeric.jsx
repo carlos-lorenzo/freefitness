@@ -5,20 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function SetNumeric({ client, property, unit }) {
 
-    const [csrfToken, setCsrfToken] = useState('');
-
-    useEffect(() => {
-        // Fetch the CSRF token on component mount
-        client.get('/api/get_csrf_token')
-            .then(response => {
-                setCsrfToken(response.data.csrfToken);
-            })
-            .catch(error => {
-                console.error('Error fetching CSRF token:', error);
-            });
-    }, []);
-
-
+    
 
     function handlePropertyUpdate(e) {
 		e.preventDefault();
@@ -28,9 +15,7 @@ export default function SetNumeric({ client, property, unit }) {
 		client.post(
 			`/api/update_${property}`,
             formData,
-            { headers: { 'X-CSRFToken': csrfToken } },
-			
-            
+			    
             
 		).then(function(response){
 			toast.success(`${property.charAt(0).toUpperCase() + property.slice(1)} updated`, {

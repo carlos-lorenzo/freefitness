@@ -5,7 +5,7 @@ import CreateMeal from './Components/CreateMeal';
 import Tracker from './Components/Tracker';
 import MustLogIn from './Components/MustLogIn';
 
-export default function Diet({ loggedIn, setLoggedIn, client }) {
+export default function Diet({ loggedIn, client }) {
 
     const [key, setKey] = useState(Math.random());
 

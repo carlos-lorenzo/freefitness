@@ -21,7 +21,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
 const client = axios.create({
-    baseURL: `https://freefitness-api.vercel.app/`, 
+    baseURL: `http://freefitness-api.vercel.app/`, 
 });
 
 // Fetch the CSRF token

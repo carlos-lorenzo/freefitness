@@ -3,18 +3,7 @@ import { toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 export default function SetActivity({ client }) {
 
-    const [csrfToken, setCsrfToken] = useState('');
-
-    useEffect(() => {
-        // Fetch the CSRF token on component mount
-        client.get('/api/get_csrf_token')
-            .then(response => {
-                setCsrfToken(response.data.csrfToken);
-            })
-            .catch(error => {
-                console.error('Error fetching CSRF token:', error);
-            });
-    }, []);
+    
 
 
     function handleActivityUpdate(e) {
@@ -28,7 +17,6 @@ export default function SetActivity({ client }) {
             client.post(
                 "/api/update_activity",
                 formData,
-                { headers: { 'X-CSRFToken': csrfToken } },
                 
             ).then(function(response){
                 toast.success(`Activity updated`, {
