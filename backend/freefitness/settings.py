@@ -134,10 +134,7 @@ WSGI_APPLICATION = "freefitness.wsgi.app"
 
 
 if os.environ.get("VERCEL_ENV") == "production":
-	CSRF_COOKIE_SECURE = True 
-	SESSION_COOKIE_SECURE = True
-	SESSION_COOKIE_DOMAIN = 'vercel.app'
-	CSRF_COOKIE_DOMAIN = 'vercel.app'
+	
 	DATABASES = {
 		"default": dj_database_url.config(
 			default=os.environ.get("DB_URL"), conn_max_age=600
@@ -145,7 +142,7 @@ if os.environ.get("VERCEL_ENV") == "production":
 	}
 	
 elif os.environ.get("VERCEL_ENV") == "development":
-	CSRF_COOKIE_SECURE = False 
+	
 	DATABASES = {
 		"default": {
 			"ENGINE": "django.db.backends.sqlite3",

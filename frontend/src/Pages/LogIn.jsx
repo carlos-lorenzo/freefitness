@@ -21,13 +21,14 @@ export default function LogIn({ setLoggedIn, client }) {
                 username: email,
                 password: password
             }
-        ).then(function(res) {
+        ).then(function(response) {
             client.defaults.headers.common['Authorization'] = `Token ${response.data.token}`;
             setLoggedIn(true);
             
             navigate('/diet');
 
         }).catch(function(error) {
+            console.log(error)
             toast.error("Invalid login credentials", {
                 position: "top-right",
                 autoClose: 3000,
